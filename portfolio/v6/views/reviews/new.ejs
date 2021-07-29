@@ -1,0 +1,59 @@
+<% include ../partials/headera %>
+<div class="col-lg-6 col-md-12" id="form">
+	<div class="row justify-content-center">
+		<div class="col-lg-8 col-md-12" style="margin-top: 10%">
+			<div id="form1">
+				<a href="/projects/<%= project.subpageLink %>">
+                    <i class="fas fa-arrow-left"></i>
+                    <%= language.__('Wróć do strony projektu') %> <%= project.title %> <% if(lang == "en"){ %>
+                        project
+                    <% } %>
+					
+				</a>
+				<h1 class="login">
+                    <%= language.__('Dodaj opinię o projekcie') %> <%= project.title %> <% if(lang == "en"){ %>
+                        project
+                    <% } %>
+                </h1>
+				<% if(error.length > 0){ %>
+					<div class="alert alert-danger" role="alert">
+						<%= error %>
+					</div>
+				<% } %>
+ 
+                    <form action="/projects/<%= project._id %>/reviews" method="post">
+                        <p class="username"><%= language.__('Ocena') %></p>
+                        <div id="ratingDiv">
+                            <% for(let i=1;i<=5;i++){ %>
+                                <div class="star d-inline" id="<%= i %>"><i class="fas fa-star"></i></div>
+                            <% } %>
+                        </div>
+                       
+                       
+                        <br>
+                        <input type="text" id="stars" value="" name="stars" hidden>
+                        <p class="username"><%= language.__('Opinia') %></p>
+                        <textarea name="text" id="description" class="form-control" placeholder="<%= language.__('Wpisz opinię') %>"></textarea>
+                        <br>
+                        <p class="username"><%= language.__('Twoje imię') %></p>
+                        <input type="text" name="username" id="" placeholder="<%= language.__("Wpisz swoje imię") %>" class="form-control">
+                        <br>
+                        <input type="submit" value="<%= language.__('Dodaj opinię') %>" class="btn btn-primary button">
+                    </form>
+                </div>
+            </div>
+        </div>
+      </div>
+  </div>
+  <script>
+      $(".star").on('click', function(){
+        
+        document.getElementById("stars").value = this.id;
+        for(let i=0; i<= this.id;i++){
+           document.getElementById(this.id-i).style.color = "goldenrod";
+        }
+        
+      });
+  </script>
+</body>
+</html>
