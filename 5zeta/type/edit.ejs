@@ -1,0 +1,52 @@
+<%- include("../partials/headera") %>
+<div class="col-lg-6 col-md-12" id="form">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-12" style="margin-top: 20%">
+            <div id="form1">
+                <a href="/announcements/type">
+                    <i class="fas fa-arrow-left"></i>
+                    Wróć do wszystkich typów
+                </a>
+                <h1 class="login">Edytuj typ <%= type.title %></h1>
+                <% if(error.length > 0){ %>
+                    <div class="alert alert-danger" role="alert">
+                        <%= error %>
+                    </div>
+                <% } %>
+                <% if(success.length > 0){ %>
+                    <div class="alert alert-success" role="alert">
+                        <%= success %>
+                    </div>
+                <% } %>
+                <form action="/announcements/type/<%= type._id %>?_method=PUT" method="post">
+                  
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" value="<%= type.title %>" name="type[title]" id="title" placeholder="Moda i fitness" aria-label="Tytuł typów" aria-describedby="basic-addon1">
+                        <label for="title" class="username">
+                            Edytuj tytuł typu
+                            
+                        </label>
+                        
+                    </div> 
+                    <input type="submit" value="Edytuj typ" class="btn btn-warning button btn-golden" style="color: black;">
+                   
+                </form>
+                
+            </div>
+           
+        </div>
+        
+    </div>
+</div>
+<script>
+    
+
+    $(".form-control").on('click', function(){
+        $(".form-control").css({             
+            "box-shadow": "none"
+        });
+    });
+               
+    </script>
+</body>
+</html>

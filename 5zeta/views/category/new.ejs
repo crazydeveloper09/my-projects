@@ -1,0 +1,51 @@
+<%- include("../partials/headera") %>
+<div class="col-lg-6 col-md-12" id="form">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-12" style="margin-top: 20%">
+            <div id="form1">
+                <a href="/announcements/category">
+                    <i class="fas fa-arrow-left"></i>
+                    Wróć do wszystkich kategorii
+                </a>
+                <h1 class="login">Dodaj kategorię</h1>
+                <% if(error.length > 0){ %>
+                    <div class="alert alert-danger" role="alert">
+                        <%= error %>
+                    </div>
+                <% } %>
+                <% if(success.length > 0){ %>
+                    <div class="alert alert-success" role="alert">
+                        <%= success %>
+                    </div>
+                <% } %>
+                <form action="/announcements/category" method="post">
+                   
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="title" id="title" placeholder="Moda i fitness" aria-label="Tytuł kategorii" aria-describedby="basic-addon1">
+                        <label for="title" class="username">
+                            Tytuł kategorii
+                             
+                         </label>
+                    </div> 
+                    <input type="submit" value="Dodaj kategorię" class="btn btn-warning button btn-golden" style="color: black;">
+                   
+                </form>
+                
+            </div>
+           
+        </div>
+        
+    </div>
+</div>
+<script>
+    
+
+    $(".form-control").on('click', function(){
+        $(".form-control").css({             
+            "box-shadow": "none"
+        });
+    });
+               
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<%- include("../partials/headera") %>
+<div class="col-lg-6 col-md-12" id="form">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-12" style="margin-top: 16%">
+            <div id="form1">
+                <a href="/user/<%= user.username %>/dashboard">
+                    <i class="fas fa-arrow-left"></i>
+                    Wróć do panelu administratora
+                </a>
+                <h1 class="login">Edytuj zdjęcie profilowe</h1>
+                <% if(error.length > 0){ %>
+                    <div class="alert alert-danger" role="alert">
+                        <%= error %>
+                    </div>
+                <% } %>
+                <% if(success.length > 0){ %>
+                    <div class="alert alert-success" role="alert">
+                        <%= success %>
+                    </div>
+                <% } %>
+                <form action="/user/<%= user._id %>/edit/picture" method="post" enctype="multipart/form-data">
+                   
+                    
+                    <label for="picture" class="username">
+                       Wybierz plik
+                        
+                    </label>
+                    <br>
+                    <input required type="file" name="profile" id="picture">
+                    <br>
+                    <br>
+                    <input required type="submit" value="Edytuj zdjęcie profilowe" class="btn btn-warning button btn-golden" style="color: black;">
+                   
+                </form>
+               
+            </div>
+           
+        </div>
+        
+    </div>
+</div>
+
+</body>
+</html>

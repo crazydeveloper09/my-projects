@@ -1,0 +1,116 @@
+<%- include("../partials/headera") %>
+<div class="col-lg-6 col-md-12" id="form">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-12" style="margin-top: 2%">
+            <div id="form1">
+                <a href="/user/<%= currentUser.username %>/dashboard">
+                    <i class="fas fa-arrow-left"></i>
+                    Wróć do panelu administratora
+                </a>
+                <h1 class="login">Dodaj ogłoszenie</h1>
+                <% if(error.length > 0){ %>
+                    <div class="alert alert-danger" role="alert">
+                        <%= error %>
+                    </div>
+                <% } %>
+                <% if(success.length > 0){ %>
+                    <div class="alert alert-success" role="alert">
+                        <%= success %>
+                    </div>
+                <% } %>
+                <form action="/announcements" method="post" enctype="multipart/form-data">
+                   
+                    
+                    <div class="form-floating mb-3">
+                        <input required type="text" class="form-control" name="title" id="title" placeholder="Pies rasowy Labrador" aria-label="Tytuł ogłoszenia" aria-describedby="basic-addon1">
+                        <label for="title" class="username">
+                            Podaj tytuł ogłoszenia
+                            
+                        </label>
+                    </div> 
+                    
+                    <div class="form-floating mb-3">
+                        <select required class="form-select" name="category" id="category" aria-label="Kategoria ogłoszenia">
+                            <% categories.forEach((category) => { %>
+                                <option value="<%= category._id %>"><%= category.title %></option>
+                            <% }) %>
+                        </select>
+                        <label for="category" class="username">
+                            Wybierz kategorię
+                            
+                        </label>
+                    </div> 
+                    
+                    
+                    <div class="form-floating mb-3">
+                        <select required class="form-select" name="type" id="type" aria-label="Stan produktu">
+                            <% types.forEach((type) => { %>
+                                <option value="<%= type._id %>"><%= type.title %></option>
+                            <% }) %>
+                        </select>
+                        <label for="type" class="username">
+                            Wybierz typ ogłoszenia
+                            
+                        </label>
+                    </div> 
+                    
+                    
+                    <div class="form-floating mb-3">
+                        <input required type="number" name="price" id="price" step="0.01" placeholder="700" class="form-control">
+                        <label for="price" class="username">
+                            Wpisz cenę
+                            
+                        </label>
+                    </div> 
+                    
+                   
+                    <div class="form-floating mb-3">
+                        <textarea required name="description" placeholder="Opis ogłoszenia" id="description" class="form-control"></textarea>
+                        <label for="description" class="username">
+                            Wpisz opis ogłoszenia
+                            
+                        </label>
+                    </div> 
+                    
+                   
+                    <div class="form-floating mb-3">
+                        <textarea required name="keywords" placeholder="Słowa kluczowe" id="description" class="form-control"></textarea>
+                        <label for="description" class="username">
+                            Wpisz po przecinku słowa kluczowe
+                            
+                        </label>
+                    </div> 
+                    <label for="profile" class="username">
+                       Wybierz zdjęcie główne ogłoszenia
+                        
+                    </label>
+                    <input required type="file" name="profile" id="profile">
+                    <br>
+                    <br>
+                    <input required type="submit" value="Dodaj ogłoszenie" class="btn btn-warning button btn-golden" style="color: black;">
+                   
+                </form>
+               
+            </div>
+           
+        </div>
+        
+    </div>
+</div>
+<script>
+    
+
+    $(".form-control").on('click', function(){
+        $(".form-control").css({             
+            "box-shadow": "none"
+        });
+    });
+    $(".form-select").on('click', function(){
+        $(".form-select").css({             
+            "box-shadow": "none"
+        });
+    });
+               
+    </script>
+</body>
+</html>

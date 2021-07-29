@@ -1,0 +1,57 @@
+<%- include("../partials/headera") %>
+<div class="col-lg-6 col-md-12" id="form">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-12" style="margin-top: 6%">
+            <div id="form1">
+               
+                <h1 class="login">Zweryfikuj konto w 5zeta</h1>
+                <% if(error.length > 0){ %>
+                    <div class="alert alert-danger" role="alert">
+                        <%= error %>
+                    </div>
+                <% } %>
+                <% if(success.length > 0){ %>
+                    <div class="alert alert-success" role="alert">
+                        <%= success %>
+                    </div>
+                <% } %>
+                <% if(typeof user !== 'undefined'){ %>
+                    <form action="/user/<%= user._id %>/verification" method="post">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="code" id="code" placeholder="123523" aria-label="Kod weryfikacyjny" aria-describedby="basic-addon1" required>
+                            <label for="code" class="username">
+                                Podaj kod weryfikacyjny wysłany na adres email
+                                
+                            </label>
+                            
+                        </div>  
+                        <input type="submit" value="Zweryfikuj konto" class="btn btn-warning button btn-golden" style="color: black;">
+                       
+                    </form>
+                    <form action="/user/<%= user._id %>/resend/verification" method="post">
+                        <input type="submit" value="Wyślij kod ponownie" class="btn btn-info button btn-green">
+                    </form>
+                <% } else { %>
+                    <form action="/user/<%= user_id %>/resend/verification" method="post">
+                        <input type="submit" value="Wyślij kod ponownie" class="btn btn-info button btn-green">
+                    </form>
+                <% } %>
+                
+            </div>
+           
+        </div>
+        
+    </div>
+</div>
+<script>
+    
+
+    $(".form-control").on('click', function(){
+        $(".form-control").css({             
+            "box-shadow": "none"
+        });
+    });
+               
+    </script>
+</body>
+</html>

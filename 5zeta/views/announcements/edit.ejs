@@ -1,0 +1,84 @@
+<%- include("../partials/headera") %>
+<div class="col-lg-6 col-md-12" id="form">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-12" style="margin-top: 5%">
+            <div id="form1">
+                <a href="/user/<%= currentUser.username %>/dashboard">
+                    <i class="fas fa-arrow-left"></i>
+                    Wróć do panelu administratora
+                </a>
+                <h1 class="login">Edytuj ogłoszenie <%= announcement.title %></h1>
+                <% if(error.length > 0){ %>
+                    <div class="alert alert-danger" role="alert">
+                        <%= error %>
+                    </div>
+                <% } %>
+                <% if(success.length > 0){ %>
+                    <div class="alert alert-success" role="alert">
+                        <%= success %>
+                    </div>
+                <% } %>
+                <form action="/announcements/<%= announcement._id %>?_method=PUT" method="post">
+                   
+                   
+                   
+                    
+                    <div class="form-floating mb-3">
+                        <input required type="text" value="<%= announcement.title %>" class="form-control" name="announcement[title]" id="title" placeholder="Pies rasowy Labrador" aria-label="Tytuł ogłoszenia" aria-describedby="basic-addon1">
+                        <label for="title" class="username">
+                            Edytuj tytuł ogłoszenia
+                            
+                        </label>
+                    </div> 
+                    
+                    
+                  
+                   
+                    <div class="form-floating mb-3">
+                        <input required type="number" value="<%= announcement.price %>" name="announcement[price]" id="price" step="0.01" placeholder="700" class="form-control">
+                        <label for="type" class="username">
+                            Edytuj cenę
+                            
+                        </label>
+                    </div> 
+                    
+                    
+                    <div class="form-floating mb-3">
+                        <textarea required name="announcement[description]" placeholder="Opis ogłoszenia" id="description" class="form-control"><%= announcement.description %></textarea>
+                        <label for="description" class="username">
+                            Edytuj opis ogłoszenia
+                            
+                        </label>
+                    </div> 
+                    
+                   
+                    <div class="form-floating mb-3">
+                        <textarea required name="announcement[keywords]" placeholder="Słowa kluczowe" id="description" class="form-control"><%= announcement.keywords %></textarea>
+                        <label for="description" class="username">
+                            Edytuj słowa kluczowe
+                            
+                        </label>
+                    </div> 
+                    
+                    <input type="submit" value="Edytuj ogłoszenie" class="btn btn-warning button btn-golden" style="color: black;">
+                   
+                </form>
+               
+            </div>
+           
+        </div>
+        
+    </div>
+</div>
+<script>
+    
+
+    $(".form-control").on('click', function(){
+        $(".form-control").css({             
+            "box-shadow": "none"
+        });
+    });
+               
+    </script>
+</body>
+</html>

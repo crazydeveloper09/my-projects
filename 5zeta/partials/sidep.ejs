@@ -1,0 +1,46 @@
+<h3 class="text-green">
+    <strong>
+       Dodane ogłoszenia
+    </strong>
+</h3>
+<div id="user_id" class="d-none"><%= user._id %></div>
+<div id="announcementsUser">
+
+</div>
+<div id="lng" class="d-none">
+    <%= user.lng %>
+</div>
+
+<script>
+let announcementsDiv = document.getElementById("announcementsUser");
+    let userId = document.getElementById("user_id").innerText;
+        axios
+        .get(`/api/announcements/${userId}`)
+        .then((response) => {
+            if(response.data.length === 0){
+                const alert = document.createElement("div");
+                alert.setAttribute("class", "alert alert-info");
+                alert.innerText = "Użytkownik nie dodał żadnych ogłoszeń";
+                announcementsDiv.appendChild(alert);
+            } else {
+                response.data.forEach((announcement) => {
+                    const p = document.createElement("p");
+                    const a = document.createElement("a");
+                
+                    a.setAttribute("href", `/announcements/${announcement.link}?announcement_id=${announcement._id}`);
+                    a.innerText = announcement.title;
+                
+                    p.appendChild(a)
+                    announcementsDiv.appendChild(p)
+                })
+            }
+            
+        })
+        .catch((err) => {
+            const alert = document.createElement("div");
+            alert.setAttribute("class", "alert alert-info");
+            alert.innerText = err.message;
+            announcementsDiv.appendChild(alert);
+        })
+
+</script>

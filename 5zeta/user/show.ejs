@@ -1,0 +1,254 @@
+<%- include("../partials/header") %>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4" id="side">
+            <%- include("../partials/sidep") %>
+        </div>
+        <div class="col-lg-8 col-md-12">
+            <h2 class="subpage-title text-center">
+                Profil użytkownika <%= user.username %>
+            </h2>
+            <% if(error.length > 0){ %>
+                <div class="alert alert-danger" role="alert">
+                    <%= error %>
+                </div>
+            <% } %>
+            <div class="card">
+                <% if(user.profile){ %>
+                    <img src="<%= user.profile %>" alt="profilowe użytkownika" class="card-img-top">
+                <% } %>
+                <div class="card-body">
+                   
+                    <% if(base64.decode(user.role) === "Firma" || base64.decode(user.role) === "Schronisko dla zwierząt"){ %>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h4 class="author-row">O nas</h4>
+                                <p class="description"><%= base64.decode(user.description) %></p>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <h4 class="author-row">Informacje</h4>
+                                <p class="description">
+                                    <a href="/user/<%= user.username %>/info">
+                                        <%=  base64.decode(user.name) %>
+                                    </a>
+                                    <br>
+                                    <span class="author-city">
+                                        <%= base64.decode(user.location) %>
+                                    </span>
+                                </p>
+                                
+                                <div id="map" style="height: 250px; width: 100%">
+    
+                                </div>
+                                <div id="lat" class="d-none">
+                                    <%= user.lat %>
+                                </div>
+                                <div id="lng" class="d-none">
+                                    <%= user.lng %>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12" id="contact">
+                                <h4 class="author-row">Kontakt</h4>
+                                <% if(error.length > 0){ %>
+                                    <div class="alert alert-danger" role="alert">
+                                        <%= error %>
+                                    </div>
+                                <% } %>
+                                <% if(success.length > 0){ %>
+                                    <div class="alert alert-success" role="alert">
+                                        <%= success %>
+                                    </div>
+                                <% } %>
+                                <form action="/user/<%= user._id %>/contact" method="post">
+                                    <input required type="text" name="name" placeholder="Imię i nazwisko" class="form-control">
+                                    <br>
+                                    <input required type="email" name="email" placeholder="Email" class="form-control">
+                                    <br>
+                                    <input required type="text" name="topic" placeholder="Temat" class="form-control">
+                                    <br>
+                                    <textarea required name="text" placeholder="Tekst wiadomości" class="form-control"></textarea>
+                                    <br>
+                                    <input type="submit" value="Wyślij email" class="btn button-small btn-success">
+                                </form>
+                            </div>
+                           
+                        </div>
+                    <% } else { %>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-12">
+                                <h4 class="author-row">Informacje</h4>
+                                <p class="description">
+                                    <a href="/user/<%= user.username %>/info">
+                                        <%= base64.decode(user.name) %>
+                                    </a>
+                                    <br>
+                                    <span class="author-city">
+                                        <%= base64.decode(user.location) %>
+                                    </span>
+                                </p>
+                                
+                                <div id="map" style="height: 250px; width: 100%">
+    
+                                </div>
+                                <div id="lat" class="d-none">
+                                    <%= user.lat %>
+                                </div>
+                                <div id="lng" class="d-none">
+                                    <%= user.lng %>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12" id="contact">
+                                <h4 class="author-row">Kontakt</h4>
+                                <% if(error.length > 0){ %>
+                                    <div class="alert alert-danger" role="alert">
+                                        <%= error %>
+                                    </div>
+                                <% } %>
+                                <% if(success.length > 0){ %>
+                                    <div class="alert alert-success" role="alert">
+                                        <%= success %>
+                                    </div>
+                                <% } %>
+                                <form action="/user/<%= user._id %>/contact" method="post">
+                                    <input required type="text" name="name" placeholder="Imię i nazwisko" class="form-control">
+                                    <br>
+                                    <input required type="email" name="email" placeholder="Email" class="form-control">
+                                    <br>
+                                    <input required type="text" name="topic" placeholder="Temat" class="form-control">
+                                    <br>
+                                    <textarea required name="text" placeholder="Tekst wiadomości" class="form-control"></textarea>
+                                    <br>
+                                    <input type="submit" value="Wyślij email" class="btn button-small btn-success">
+                                </form>
+                            </div>
+                            <div class="col-lg-12">
+                                
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
+                <div class="card-footer">
+                    <h4 class="author-row">Opinie</h4>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <a href="/user/<%= user.username %>/reviews/new" class="btn button-small btn-success">Dodaj opinię</a>
+                            <br>
+                            <br>
+                            <% if(reviews.length === 0){ %>
+                                <div class="alert alert-info">
+                                    Nikt nie dodał jeszcze opinii o <%= user.username %>
+                                </div>
+                            <% } else { %>
+                                <% reviews.forEach((review) => { %>
+                                    <div class="d-flex justify-content-start mb-4 messages">
+                                        <div class="img_cont_msg" style="background-color: <%= review.picture %>;">
+
+                                            <div class="rounded-circle img_cont_comments"></div>
+                                        </div>
+                                        <div class="msg_cotainer">
+                                            <div id="ratingDiv">
+                                                <% for(let j=1;j<=5;j++){ %>
+                                                    <% if(j <= review.stars){ %>
+                                                        <div class="star d-inline" id="<%= j %>" style="color: goldenrod;"><i class="fas fa-star"></i></div>
+                                                    <% } else { %>
+                                                        <div class="star d-inline" id="<%= j %>"><i class="fas fa-star"></i></div>
+                                                    <% } %>
+                                                   
+                                                <% } %>
+                                                
+                                            </div>
+                                            <p class="author">
+                                                <strong>
+                                                    <%= review.author %>
+                                                    <% if(logged){ %>
+                                                        <% if(logged.username === user.username){ %>
+                                                            (<%= review.logged %>)
+                                                        <% } %>
+                                                    <% } %>
+                                                </strong>
+                                            </p>
+                                            <p class="description_comment"><%= review.text %></p>
+                                            <span class="date_comment"><%= review.published.toLocaleDateString() %></span>
+                                            <% if(logged){ %>
+                                                <% if(logged.username === user.username){ %>
+                                                    <br>
+                                                    <br>
+                                                    <a href="/user/<%= user.username %>/reviews/<%= review._id %>/delete" style="color: #212529;margin-right: 5px"></a>
+                                                   
+                                                <% } %>
+                                            <% } %>
+                                            
+                                            <hr>
+                                        </div>
+                                       
+                                    </div>
+                                <% }) %>
+                            <% } %>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+       
+       
+    <script>
+        function initMap() {
+            if(`<%= base64.decode(user.role) %>` === "admin" || `<%= base64.decode(user.role) %>` === "Oosoba fizyczna"){
+                var lat = parseFloat(document.getElementById("lat").innerText);
+                var lng = parseFloat(document.getElementById("lng").innerText);
+                var center = { lat: lat, lng: lng };
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 10,
+                    center: center,
+                    scrollwheel: false
+                });
+                var contentString = `
+                <strong><%= base64.decode(user.name) %><br />
+                <%= base64.decode(user.city) %></strong>
+                `
+                var infowindow = new google.maps.InfoWindow({
+                    content: contentString
+                });
+                var marker = new google.maps.Marker({
+                    position: center,
+                    map: map
+                });
+                marker.addListener('click', function () {
+                    infowindow.open(map, marker);
+                });
+            } else {
+                var lat = parseFloat(document.getElementById("lat").innerText);
+                var lng = parseFloat(document.getElementById("lng").innerText);
+                var center = { lat: lat, lng: lng };
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 15,
+                    center: center,
+                    scrollwheel: false
+                });
+                var contentString = `
+                <strong><%= base64.decode(user.name) %><br />
+                    <%= base64.decode(user.street) %> <%= base64.decode(user.city) %></strong>
+                `
+                var infowindow = new google.maps.InfoWindow({
+                    content: contentString
+                });
+                var marker = new google.maps.Marker({
+                    position: center,
+                    map: map
+                });
+                marker.addListener('click', function () {
+                    infowindow.open(map, marker);
+                });
+            }
+            
+        }
+      </script>
+      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKvmIASZjDfZNXZZn2fa4pGvR6T3cQTcA&callback=initMap"></script>
+</div>
+<%- include("../partials/footer") %>

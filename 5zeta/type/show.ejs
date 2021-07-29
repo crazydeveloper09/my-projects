@@ -1,0 +1,128 @@
+<%- include("../partials/header") %>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4" id="side">
+            <%- include("../partials/side") %>
+        </div>
+        <div class="col-lg-8 col-md-12">
+            <h2 class="subpage-title text-center">
+                Ogłoszenia dla typu <%= type.title %>
+            </h2>
+            <p class="description text-center" style="font-size: 18px;">
+                Jeśli chcesz wyszukać ogłoszenie skorzystaj z podstawowej wyszukiwarki powyżej
+                lub z 
+                <a data-toggle="modal" data-target="#advancedSearch" style="color: lightseagreen; cursor: pointer;">
+                    zaawansowanej wyszukiwarki
+                </a>
+            </p>
+            <% if(error.length > 0){ %>
+                <div class="alert alert-danger" role="alert">
+                    <%= error %>
+                </div>
+            <% } %>
+            <% if(announcements.length === 0){ %>
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <div class="alert alert-info">
+                            Nie znaleźliśmy ogłoszeń dla typu <%= type.title %>
+                        </div>
+                    </div>
+                </div>
+            <% } else { %>
+                <div class="row">
+                    <% announcements.forEach((announcement) => { %>
+                        <div class="col-lg-5 col-sm-12" style="margin-top: 8px;">
+                            <div class="card">
+                                <img src="<%= announcement.profile %>" alt="zdjęcie ogłoszenia" class="card-img-top">
+                                <div class="card-body">
+                                    <div class="card-title"><%= announcement.title %></div>
+                                    <span class="badge text-light border badge-mine"><%= announcement.category.title %></span>
+                                    
+                                    <p class="description">
+                                        <% if(announcement.length < 200){ %>
+                                            <%= announcement.description %>
+                                        <% } else { %>
+                                            <%= announcement.description.substring(0,200) %>...
+                                        <% } %>
+                                    
+                                    </p>
+                                    <div>
+                                        <p class="float-start author-city"> <%= base64.decode(announcement.author.city) %></p>
+                                        <p class="float-end price"> <%= announcement.price %>zł</p>
+                                    </div>
+                                    <div style="clear: both;">
+                                        <a href="/announcements/<%= announcement.link %>?announcement_id=<%= announcement._id %>" class="btn button-small btn-success">Czytaj więcej</a>
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+            <% } %>
+        </div>
+    </div>
+    <div class="modal fade" id="advancedSearch" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Zaawansowane wyszukiwanie ogłoszeń dla typu <%= type.title %></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form action="/announcements/type/<%= type.link %>/search/advanced" method="get">
+                <div class="modal-body">
+                    <input type="text" name="type_id" value="<%= type._id %>" hidden>
+                    <label for="title" class="username">
+                        Wpisz tytuł
+                        
+                    </label>
+                    <input type="text" name="title" placeholder="Pies rasowy labrador" id="title" class="form-control">
+                    
+                    <br>
+                    
+                    <label for="price" class="username">
+                        Wpisz cenę
+                    </label>
+                    <input type="number" name="price" placeholder="90" id="price" class="form-control">
+                    <br>
+                    <label for="keyword" class="username">
+                        Wpisz słowo kluczowe
+                    </label>
+                    <input type="text" name="keyword" placeholder="pies" id="keyword" class="form-control">
+                    <br>
+                    <label for="keyword" class="username">
+                        Wybierz, w jakim przedziale cen szukać ogłoszenie
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="howToSearchPrice" value="greater">
+                        <div class="radioButton"></div>
+                        <p>Więcej niż cena</p>
+                    </label>
+                    
+                    <label class="radio">
+                        <input type="radio" name="howToSearchPrice" value="less">
+                        <div class="radioButton"></div>
+                        <p>Mniej niż cena</p>
+                    </label>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" value="Szukaj" class="btn btn-warning button-golden">
+                    <button type="button" class="btn btn-success button-small" data-dismiss="modal">Zamknij</button>
+                    
+                </div>
+            </form>
+           
+          </div>
+        </div>
+      </div>
+       
+    <script>
+        $("#announcementsLaptop").addClass("active");
+        $("#announcementsMobile").css("border-bottom", "3px solid white")
+    </script>
+   
+</div>
+<%- include("../partials/footer") %>
