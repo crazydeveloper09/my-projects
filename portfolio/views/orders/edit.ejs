@@ -1,0 +1,112 @@
+<% include ../partials/headera %>
+<div class="col-lg-6 col-md-12" id="form" style="height: 100%">
+	<div class="row justify-content-center">
+		<div class="col-lg-8 col-md-12" style="margin-top: 5%">
+			<div id="form1">
+				<a href="/website-orders">
+					<i class="fas fa-arrow-left"></i>
+					Wróć do strony wszystkich zamówień
+				</a>
+				<h1 class="login">
+                   Edytuj zamówienie <%= order.websiteTitle %>
+                   
+                </h1>
+               
+				<% if(error.length > 0){ %>
+					<div class="alert alert-danger" role="alert">
+						<%= error %>
+					</div>
+				<% } %>
+                   
+                        <form action="/website-orders/<%= order._id %>?_method=PUT" method="post">
+                           
+                              
+                                <div class="form-floating mb-3">
+                       
+                                    <input type="text" name="order[websiteTitle]" id="websiteTitle" autocomplete="off" value="<%= order.websiteTitle %>" placeholder="np. Portfolio" class="form-control">
+                                    <label for="websiteTitle" class="username">
+                                        Edytuj nazwę strony
+                                        
+                                    </label>
+                                    
+                                </div>
+                                <% if(order.type === "update"){ %>
+                                    <div class="form-floating mb-3">
+                       
+                                        <input type="text" name="order[previousWebsite]" id="previousWebsite" autocomplete="off" value="<%= order.previousWebsite %>" placeholder="np. https://wwww.danmag.pl" class="form-control">
+                                        <label for="description" class="username">
+                                            Edytuj link do aktualnej wersji
+                                            
+                                        </label>
+                                        
+                                    </div>
+                                <% } %>
+                               
+                               
+                             
+                                <div class="form-floating mb-3">
+                       
+                                    <textarea name="order[whatYouWish]" id="description" placeholder="np. Strona bardziej dostosowana do urządzeń mobilnych" class="form-control"><%= order.whatYouWish %></textarea>
+                                    <label for="description" class="username">
+                                        
+                                        <% if(order.type === "update"){ %>
+                                            Edytuj czego oczekujesz po aktualizacji
+                                        <% } else { %>
+                                            Edytuj czego oczekujesz po stronie
+                                        <% } %>
+                                    </label>
+                                    
+                                </div>
+                               
+                                <div class="form-floating mb-3">
+                       
+                                    <input type="text" name="order[name]" id="name" autocomplete="off" value="<%= order.name %>" placeholder="np. Jan Kowalski" class="form-control">
+                                    <label for="name" class="username">
+                                        Wpisz treść emaila
+                                        
+                                    </label>
+                                    
+                                </div>
+                              
+                               
+                                <div class="form-floating mb-3">
+                       
+                                    <input type="text" name="order[status]" id="status" autocomplete="off" value="<%= order.status %>" placeholder="np. Zostały ostatnie poprawki" class="form-control">
+                                    <label for="status" class="username">
+                                        Edytuj status polski
+                                        
+                                    </label>
+                                    
+                                </div>
+                                
+                                <div class="form-floating mb-3">
+                       
+                                    <input type="text" name="order[statusEn]" id="statusEn" autocomplete="off" value="<%= order.statusEn %>" placeholder="np. Just last fixes" class="form-control">
+                                    <label for="statusEn" class="username">
+                                        Edytuj status angielski
+                                        
+                                    </label>
+                                    
+                                </div>
+                              
+                                <div class="form-floating mb-3">
+                       
+                                    <input type="email" name="order[email]" id="email" autocomplete="off" value="<%= order.email %>" placeholder="np. jankowalski@gmail.com" class="form-control">
+                                    <label for="description" class="username">
+                                        Edytuj email kontaktowy
+                                        
+                                    </label>
+                                    
+                                </div>
+                                <input type="submit" value="Edytuj zamówienie" class="btn btn-primary button">
+                            
+                        </form>
+                   
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

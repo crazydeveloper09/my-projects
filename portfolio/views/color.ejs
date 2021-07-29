@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            <%= header %>
+        </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+        <link type="text/css" rel="stylesheet" href="/color.css">
+    </head>
+    <body style="background-color: #232323">
+        <div class="text-white h-50 m-0" id="header" style="background-color: #007bff">
+         
+                       <h1>Wielka <br> <span id="colorDisplay"></span> <br>Gra kolorów</h1>
+			<div class="text-center">
+				<a href="/" style="color: white">Wróć do portfolio</a>
+				
+			</div>
+                <br>
+        </div>
+		
+        <div class="container-fluid">
+            <div class="row">
+                    <nav class="col-lg-12 navbar bg-white h-25">
+                            <a class="new nav" id="new">Nowe kolory</a>
+                            <a class="levels nav">Łatwe</a>
+                            <a class="levels nav">Trudne</a>
+                        </nav>
+            </div>
+        </div>
+       	<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div id="container">
+					   <div class="square"></div>
+					   <div class="square"></div>
+					   <div class="square"></div>
+					   <div class="square"></div>
+					   <div class="square"></div>
+					   <div class="square"></div>
+					</div>
+				</div>
+			
+			</div>
+		</div>
+        
+        <div>
+			<br>
+                <h1 class="justify-content-center text-white" id="score">
+
+                </h1>
+        </div>
+       
+        <script src="/color.js"></script>
+    </body>
+</html>

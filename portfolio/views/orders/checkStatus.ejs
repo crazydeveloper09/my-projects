@@ -1,0 +1,32 @@
+<% include ../partials/header %>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <% if(order){ %>
+                <div class="card">
+                    <div class="card-body">
+                        <p class="do">
+                            <% if(lang === "pl"){ %>
+                                <p class="do">Aktualny status twojego zamówienia to: <%= order.status %></p>
+                            <% } else { %>
+                                <p class="do">Yours order status: <%= order.statusEn %></p>
+                            <% } %>
+                        </p>
+                    </div>
+                </div>
+            <% } else { %>
+                
+                <div class="alert alert-dark">
+                    <%= language.__('Nie znaleźliśmy takiego zamówienia, spróbuj ponownie') %>
+                </div>
+            <% } %>
+            
+           
+        </div>
+    </div>
+</div>
+<% include ../partials/footer %>

@@ -1,0 +1,61 @@
+<% include ../partials/headera %>
+<div class="col-lg-6 col-md-12" id="form" style="height: 100%">
+	<div class="row justify-content-center">
+		<div class="col-lg-8 col-md-12" style="margin-top: 6%">
+			<div id="form1">
+				<a href="/bootcamps">
+					<i class="fas fa-arrow-left"></i>
+					Wróć do strony głównej kursów
+				</a>
+				<h1 class="login">Dodaj bootcamp</h1>
+                    <% if(error && error.length > 0){ %>
+                        <div class="alert alert-danger" role="alert">
+                            <%= error %>
+                        </div>
+                    <% } %>
+                        
+                    <form action="/bootcamps" method="post" enctype="multipart/form-data">
+                      
+                        <div class="form-floating mb-3">
+                       
+                            <input type="text" name="title" id="title" autocomplete="off" class="form-control" placeholder="Nazwa bootcampa">
+                            <label for="title" class="username">
+                                Wpisz nazwę bootcampa
+                                
+                            </label>
+                            
+                        </div>
+                        
+                        <div class="form-floating mb-3">
+                       
+                            <input type="text" name="instructor" id="instructor" autocomplete="off" class="form-control" placeholder="Imiona i nazwiska instruktorów">
+                            <label for="instructor" class="username">
+                                Wpisz imiona i nazwiska instruktorów
+                                
+                            </label>
+                            
+                        </div>
+                        
+                       
+                        <div class="form-floating mb-3">
+                       
+                            <input type="text" name="link" id="link" autocomplete="off" class="form-control" placeholder="Link do kursu">
+                            <label for="description" class="username">
+                                Wpisz link do kursu
+                                
+                            </label>
+                            
+                        </div>
+                        <p class="username">Wybierz zdjęcie</p>
+                        <input type="file" name="profile" style="color: white">
+                        <br>
+                        <br>
+                        <input type="submit" value="Dodaj bootcamp" class="btn btn-primary button">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

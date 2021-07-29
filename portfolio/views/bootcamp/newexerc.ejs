@@ -1,0 +1,49 @@
+<% include ../partials/headera %>
+<div class="col-lg-6 col-md-12" id="form">
+	<div class="row justify-content-center">
+		<div class="col-lg-8 col-md-12" style="margin-top: 6%">
+			<div id="form1">
+				<a href="/bootcamps/<%= bootcamp.subpageLink %>">
+					<i class="fas fa-arrow-left"></i>
+					Wróć do <%= bootcamp.title %>
+				</a>
+				<h1 class="login">Edytuj ćwiczenie do bootcampa <%= bootcamp.title %></h1>
+                    <% if(error && error.length > 0){ %>
+                        <div class="alert alert-danger" role="alert">
+                            <%= error %>
+                        </div>
+                    <% } %>
+                    <form action="/bootcamps/<%= bootcamp._id %>/exercises" method="post" enctype="multipart/form-data">
+                       
+                        <div class="form-floating mb-3">
+                       
+                            <input type="text" name="title" id="title" autocomplete="off" class="form-control" placeholder="Nazwa ćwiczenia">
+                            <label for="title" class="username">
+                                Wpisz nazwę ćwiczenia
+                                
+                            </label>
+                            
+                        </div>
+                        
+                        <div class="form-floating mb-3">
+                       
+                            <input type="text" name="link" id="link" autocomplete="off" class="form-control" placeholder="Link do ćwiczenia">
+                            <label for="link" class="username">
+                                Wpisz link do ćwiczenia
+                                
+                            </label>
+                            
+                        </div>
+                        <p class="username">Wybierz zdjęcie</p>
+                        <input type="file" name="profile" style="color: white">
+                        <br>
+                        <br>
+                        <input type="submit" value="Dodaj ćwiczenie" class="btn btn-primary button">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

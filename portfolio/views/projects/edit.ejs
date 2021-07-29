@@ -1,0 +1,107 @@
+<% include ../partials/headera %>
+<div class="col-lg-6 col-md-12" id="form" style="height: 100%">
+	<div class="row justify-content-center">
+		<div class="col-lg-8 col-md-12" style="margin-top: 5%">
+			<div id="form1">
+				<a href="/projects/<%= project.subpageLink %>">
+					<i class="fas fa-arrow-left"></i>
+					Wróć do strony projektu <%= project.title %>
+				</a>
+				<h1 class="login">Edytuj projekt <%= project.title %></h1>
+				<% if(error.length > 0){ %>
+					<div class="alert alert-danger" role="alert">
+						<%= error %>
+					</div>
+				<% } %>
+				<form action="/projects/<%= project._id %>?_method=PUT" method="post">
+					<div class="form-floating mb-3">
+                       
+						<input type="text" autocomplete="off" id="title" name="project[title]" value="<%= project.title %>" placeholder="np. Portfolio" class="form-control">
+						<label for="title" class="username">
+							Tytuł projektu
+							
+						</label>
+						
+					</div>
+					
+					
+					<div class="form-floating mb-3">
+                       
+						<textarea name="project[description]" placeholder="np. Fajny, dla mojego przyjaciela" id="description" class="form-control"><%= project.description %></textarea>
+						<label for="description" class="username">
+							Opis projektu
+							
+						</label>
+						
+					</div>
+					
+					
+					<div class="form-floating mb-3">
+                       
+						<textarea name="project[en]" placeholder="np. Good, for my friend" id="english" class="form-control"><%= project.en %></textarea>
+						<label for="english" class="username">
+							Opis projektu po angielsku
+							
+						</label>
+						
+					</div>
+					
+					
+					<div class="form-floating mb-3">
+                       
+						<input type="text" autocomplete="off" id="status" name="project[status]" value="<%= project.status %>" placeholder="np. Tylko poprawki" class="form-control">
+						<label for="status" class="username">
+							Status projektu
+							
+						</label>
+						
+					</div>
+					
+					
+					<div class="form-floating mb-3">
+                       
+						<input type="text" autocomplete="off" id="statusEn" name="project[statusEn]" value="<%= project.statusEn %>" placeholder="np. Just fixes" class="form-control">
+						<label for="statusEn" class="username">
+							Status projektu po angielsku
+							
+						</label>
+						
+					</div>
+					
+					
+					<div class="form-floating mb-3">
+                       
+						<input type="text" autocomplete="off" id="link" name="project[link]" value="<%= project.link %>" placeholder="np. https://danmag.herokuapp.com" class="form-control">
+						<label for="link" class="username">
+							Link projektu
+							
+						</label>
+						
+					</div>
+					
+					
+					<div class="form-floating mb-3">
+                       
+						<select name="project[type]" id="type" class="form-select">
+							<option><%= project.type %></option>
+							<option value="not-ended" style="color:black">Nieskończony</option>
+							<option value="awaiting" style="color:black">Oczekujący</option>
+							<option value="done" style="color:black">Skończony</option>
+						</select>
+						<label for="type" class="username">
+							Typ projektu
+						</label>
+						
+					</div>
+					
+					<input type="submit" value="Edytuj projekt" class="btn btn-primary button">
+				</form>
+			</div>
+		</div>
+
+	</div>
+</div>
+</div>
+</body>
+
+</html>

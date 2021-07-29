@@ -1,0 +1,53 @@
+<% include ../partials/headera %>
+<div class="col-lg-6 col-md-12" id="form">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-12" style="margin-top: 15%">
+            <div id="form1">
+                <a href="/website-orders">
+                    <i class="fas fa-arrow-left"></i>
+                    Wróć do strony wszystkich zamówień
+                </a>
+                <h1 class="login">
+                    Wyślij ofertę do zamówienia strony <%= order.websiteTitle %>
+
+                </h1>
+
+                <% if(error.length > 0){ %>
+                <div class="alert alert-danger" role="alert">
+                    <%= error %>
+                </div>
+                <% } %>
+
+                <form action="/website-orders/<%= order._id %>/send" method="post">
+
+                   
+                    <div class="form-floating mb-3">
+                       
+                        <input type="text" name="topic" id="topic" autocomplete="off" placeholder="Tytuł emaila" class="form-control">
+                        <label for="topic" class="username">
+                            Wpisz tytuł emaila
+                            
+                        </label>
+                        
+                    </div>
+                  
+                    <div class="form-floating mb-3">
+                       
+                        <textarea class="form-control" name="text" id="description" placeholder="Treść emaila"></textarea>
+                        <label for="description" class="username">
+                            Wpisz treść emaila
+                            
+                        </label>
+                        
+                    </div>
+
+
+                    <input type="submit" value="Wyślij ofertę" class="btn btn-primary button">
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
