@@ -1,0 +1,47 @@
+body {
+    background-color: #232323;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 700;
+}
+h1 {
+    text-transform: uppercase;
+    font-size: 35px;
+    text-align: center;
+	line-height: 1.1;
+    font-weight: normal;
+    margin: 0;
+    padding: 20px 0;
+}
+#colorDisplay {
+    text-transform: uppercase;
+    font-size: 45px;
+}
+#container {
+    margin: 0 auto;
+    max-width: 600px;
+}
+.square {
+    width: 30%;
+    float: left;
+    background-color: purple;
+    margin: 1.66%;
+    padding-bottom: 30%;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.new {
+    float: right;
+    color: rgb(100, 100, 255);
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.levels {
+    float: left;
+    color: rgb(100, 100, 255);
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.selected {
+    color: white;
+    background-color: #007bff;
+}
