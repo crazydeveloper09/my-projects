@@ -1,0 +1,142 @@
+$clr-primary: goldenrod;
+$clr-border: lightseagreen;
+$clr-borderBootstrap: #ced4da;
+$clr-form: #F2F4F5;
+$radius: 0.5rem;
+
+body,
+html {
+    background-color:#383730;
+}
+
+.container-full {
+    width: 100vw;
+}
+
+#info {
+    background:#383730;
+    height: 100vh;
+}
+#info .logo {
+    font-family: 'Nunito', sans-serif;
+    font-size: 55px;
+    color: white;
+    
+}
+
+#info .description {
+    font-family: 'Nunito', sans-serif;
+    font-size: 25px;
+    color: white;
+}
+
+  
+#form {
+    background: $clr-form;
+}
+
+.form-control {
+    outline: none;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border: 2px solid $clr-border;
+}
+
+#basic-addon1 {
+    color: $clr-border;
+    background: #fff;
+}
+
+#form1 a {
+    font-family: 'Nunito', sans-serif;
+    color: lightseagreen;
+    font-size: 18px;
+}
+
+#form .login {
+    font-family: 'Nunito', sans-serif;
+    font-size: 45px;
+    font-weight: 700;
+    color: $clr-primary;
+
+#form .username {
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: lightseagreen;
+}
+
+#form .button {
+    width: 100%;
+    margin-bottom: 15px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    color: white;
+}
+
+
+
+#form1 .form-check-label {
+    font-family: 'Nunito', sans-serif;
+}
+
+#form1 .form-check-label a {
+    font-size: 15px;
+}
+
+@media (max-width: 992px) {
+    #info {
+        display: none;
+    }
+    #form1 {
+        padding: 4%;
+    }
+    body,html {
+        background: #F2F4F5;
+    }
+}
+
+.btn-golden {
+    background:   goldenrod;
+    border: 1px solid  goldenrod;
+    color: white;
+}
+#description_r {
+    color: #c9c7c7;
+    font-size:18px;
+    font-family: 'Nunito', sans-serif;
+}
+.description {
+    font-family: 'Nunito', sans-serif;
+    font-size: 20px;
+    margin-top: 10px;
+    color: #212529;
+}
+.title {
+    font-size: 35px;
+    color: lightseagreen;
+    font-weight: 700;
+    font-family: 'Nunito', sans-serif;
+}
+.title_r {
+    font-size: 45px;
+    color: goldenrod;
+    font-weight: 700;
+    font-family: 'Nunito', sans-serif;
+}
+  
+}
+
+.info {
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+    color: white;
+}
+.btn-green {
+    background: lightseagreen;
+    border: 1px solid  lightseagreen;
+    color: white;
+}
+
