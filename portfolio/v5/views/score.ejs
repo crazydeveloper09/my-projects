@@ -1,0 +1,66 @@
+<% include ./partials/header %>
+	<br>
+	<br>
+	<br>
+	<br>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+					<div class="card">
+						<br>
+						<div class="card-title display-3 blue">Score Keeper game</div>
+						<div class="card-body">
+							 <h4 class="display-5 blue">Do you have problems with counting who wins in some game? Score Keeper is for you</h4>
+							<p class="display-4 blue">Set nicknames</p>
+
+							<input type="text" class="col-lg-3 form-control d-inline" placeholder="Player One" id="nickOne">
+							<div class="d-md-block d-lg-none">
+								<br>
+							</div>
+							<button id="setNickOne" class="btn btn-outline-primary d-inline">Set</button>
+							<div class="d-md-block d-lg-none">
+								<br>
+							</div>
+							<input type="text" class="col-lg-3 form-control d-inline" placeholder="Player Two" id="nickTwo">
+							<div class="d-md-block d-lg-none">
+								<br>
+							</div>
+							<button id="setNickTwo" class="btn btn-outline-primary d-inline">Set</button>
+							
+							<div class="row justify-content-center" style="margin-top: 2%">
+								<br>
+									<div class="col-lg-4 d-inline">
+										<h3 class="display-4 blue" id="playerOneNick">Player One</h3>
+										<h1 class="blue" id="playerOne">0</h1>
+									</div>
+									<p class="display-4 blue"> vs</p>
+									<div class="col-lg-4 d-inline">
+										<h3 class="display-4 blue" id="playerTwoNick">Player Two</h3>
+										<h1 class="blue" id="playerTwo">0</h1>
+									</div>
+							</div>
+
+
+							<p class="blue">Playing to <span class="normal" id="score"></span></p>
+							<div class="row justify-content-center">
+								<div class="col-lg-5">
+										<input type="number" class="form-control" placeholder="Choose a number you are playing to" id="number">
+								</div>
+							</div>   
+
+							<br>
+							<button id="addPlayerOne" class="btn btn-outline-primary">Player One</button>
+							<button id="addPlayerTwo" class="btn btn-outline-danger">Player two</button>
+							<button id="reset" class="btn btn-outline-success"> Reset</button>
+						</div>
+					</div>
+				</div>
+                   
+                   
+            </div>
+        </div>
+        
+       
+        <script src="/score.js"></script>
+ <% include ./partials/footer %>

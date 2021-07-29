@@ -1,0 +1,57 @@
+<% include ../partials/headera %>
+<div class="col-lg-6 col-md-12" id="form" style="height: 100%">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-12" style="margin-top: 5%">
+            <div id="form1">
+                <a href="/about">
+                    <i class="fas fa-arrow-left"></i>
+                    Wróć do strony O mnie
+                </a>
+                <h1 class="login">Edytuj o mnie</h1>
+                <% if(error.length > 0){ %>
+                <div class="alert alert-danger" role="alert">
+                    <%= error %>
+                </div>
+                <% } %>
+                <form action="/about/<%= user._id %>?_method=PUT" method="post">
+                    <p class="username">Edytuj nazwę użytkownika</p>
+                    <input type="text" name="user[username]" value="<%= user.username %>"
+                        placeholder="Nazwa użytkownika" class="form-control">
+                    <br>
+                    <p class="username">Edytuj email</p>
+                    <input type="text" name="user[email]" value="<%= user.email %>" placeholder="Email"
+                        class="form-control">
+                    <br>
+                    <p class="username">Edytuj link do Facebooka</p>
+                    <input type="text" name="user[fbLink]" value="<%= user.fbLink %>" placeholder="Link do Facebooka"
+                        class="form-control">
+                    <br>
+                    <p class="username">Edytuj opis linku do Facebooka</p>
+                    <input type="text" name="user[fbDesc]" value="<%= user.fbDesc %>"
+                        placeholder="Opis linku do Facebooka" class="form-control">
+                    <br>
+                    <p class="username">Edytuj link do Instagrama</p>
+                    <input type="text" name="user[igLink]" value="<%= user.igLink %>" placeholder="Link do Instagrama"
+                        class="form-control">
+                    <br>
+                    <p class="username">Edytuj opis linku do Instagrama</p>
+                    <input type="text" name="user[igDesc]" value="<%= user.igDesc %>"
+                        placeholder="Opis linku do Instagrama" class="form-control">
+                    <br>
+                    <p class="username">Edytuj opis</p>
+                    <textarea name="user[about]" placeholder="Opis projektu" id="polish"
+                        class="form-control"><%= user.about %></textarea>
+                    <br>
+                    <p class="username">Edytuj po angielsku</p>
+                    <textarea name="user[en]" placeholder="Opis admina po angielsku" id="english"
+                        class="form-control"><%= user.en %></textarea>
+                    <br>
+                    <input type="submit" value="Edytuj o mnie" class="btn btn-primary button">
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
