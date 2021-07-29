@@ -1,0 +1,79 @@
+
+    <h3 class="text-green">
+        <strong>
+            Kategorie
+        </strong>
+    </h3>
+    <div id="categoriesModal">
+    
+    </div>
+    <h3 class="text-green">
+        <strong>
+            Typy
+        </strong>
+    </h3>
+    <div id="typesModal">
+        
+    </div>
+
+
+<script>
+    let typesModal = document.getElementById("typesModal");
+    let categoriesModal = document.getElementById("categoriesModal");
+    
+    
+    
+        axios
+        .get("/api/categories")
+        .then((response) => {
+            console.log(response.data[0].announcements)
+            response.data.forEach((category) => {
+                const p = document.createElement("p");
+                const a = document.createElement("a");
+                const span = document.createElement("span");
+                span.setAttribute("class", "badge text-light badge-mine")
+                span.innerText = category.announcements.length;
+                span.style.marginLeft = "10px";
+                a.setAttribute("href", `/announcements/category/${category.link}`);
+                a.innerText = category.title;
+                a.appendChild(span)
+                p.appendChild(a)
+                categoriesModal.appendChild(p)
+            })
+        })
+        .catch((err) => {
+            const alert = document.createElement("div");
+            alert.setAttribute("class", "alert alert-info");
+            alert.innerText = err.message;
+            categoriesModal.appendChild(alert);
+        })
+
+
+
+        axios
+        .get("/api/types")
+        .then((response) => {
+           
+            response.data.forEach((type) => {
+                const p = document.createElement("p");
+                const a = document.createElement("a");
+                const span = document.createElement("span");
+                span.setAttribute("class", "badge text-light badge-mine")
+                span.innerText = type.announcements.length;
+                span.style.marginLeft = "10px";
+                a.setAttribute("href", `/announcements/type/${type.link}`);
+                a.innerText = type.title;
+                a.appendChild(span)
+                p.appendChild(a);
+                typesModal.appendChild(p)
+            })
+        })
+        .catch((err) => {
+            const alert = document.createElement("div");
+            alert.setAttribute("class", "alert alert-info");
+            alert.innerText = err.message;
+            typesModal.appendChild(alert);
+        })
+   
+    
+</script>

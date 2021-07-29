@@ -1,0 +1,58 @@
+<%- include("../partials/headera") %>
+<div class="col-lg-6 col-md-12" id="form">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-12" style="margin-top: 2%">
+            <div id="form1">
+                <a href="/user/<%= currentUser.username %>/dashboard">
+                    <i class="fas fa-arrow-left"></i>
+                    Wróć do panelu administratora
+                </a>
+                <h1 class="login">
+                    <%= atob(currentUser.name) %>, czy na pewno chcesz usunąć konto?
+                </h1>
+                <% if(error.length > 0){ %>
+                    <div class="alert alert-danger" role="alert">
+                        <%= error %>
+                    </div>
+                <% } %>
+                <% if(success.length > 0){ %>
+                    <div class="alert alert-success" role="alert">
+                        <%= success %>
+                    </div>
+                <% } %>
+                <form action="/user/<%= user._id %>?_method=DELETE" method="post">
+                    <% if(atob(currentUser.role) === 'admin'){ %>
+                       
+                        <div class="form-floating mb-3">
+                            <textarea name="reason" id="description" placeholder="Powód" class="form-control"></textarea>
+                            <label for="description" class="username">
+                                Podaj powód
+                                
+                            </label>
+                            
+                        </div>  
+                    <% } %>
+                    <input required type="submit" value="Tak" class="btn btn-warning button btn-golden" style="color: black;">
+                   
+                </form>
+                <a href="/user/<%= currentUser.username %>/dashboard" class="btn btn-info button btn-green">
+                    Nie
+                </a>
+            </div>
+           
+        </div>
+        
+    </div>
+</div>
+<script>
+    
+
+    $(".form-control").on('click', function(){
+        $(".form-control").css({             
+            "box-shadow": "none"
+        });
+    });
+               
+    </script>
+</body>
+</html>
