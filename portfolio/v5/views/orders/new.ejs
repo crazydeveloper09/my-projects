@@ -1,0 +1,81 @@
+<% include ../partials/headera %>
+<div class="col-lg-6 col-md-12" id="form">
+	<div class="row justify-content-center">
+		<div class="col-lg-8 col-md-12" style="margin-top: 5%">
+			<div id="form1">
+				<a href="/website-orders/description">
+					<i class="fas fa-arrow-left"></i>
+					<%= language.__('Wróć do strony z opisem oferty') %>
+				</a>
+				<h1 class="login">
+                    <%= language.__('Wyślij zamówienie') %>
+                   
+                </h1>
+                <p id="description_r"><%= language.__('Podaj dokładne dane w poniższym formularzu') %></p>
+				<% if(error.length > 0){ %>
+					<div class="alert alert-danger" role="alert">
+						<%= error %>
+					</div>
+				<% } %>
+
+                    <% if(orders.length >= 2){ %>
+                        <div class="row justify-content-center">
+                            <div class="col-lg-6 col-md-12">
+                                <div class="alert alert-dark">
+                                    <%= language.__('Nie przyjmuje aktualnie zamówień') %>
+                                </div>
+                            </div>
+                        </div>
+                    <% } else { %>
+                        
+                        <form action="/website-orders" method="post">
+                            <p class="username"><%= language.__('Wybierz typ zamówienia') %></p>
+                            <select id="select" name="type" class="form-control">
+                                <option value="new" style="color:black"><%= language.__('Nowa strona') %></option>
+                                <option value="update" style="color:black"><%= language.__('Aktualizacja wyglądu / strony') %></option>
+                            </select>
+                            <br>
+                            <div id="new">
+                                <p class="username"><%= language.__('Wpisz nazwę strony') %></p>
+                                <input type="text" name="websiteTitleN" placeholder="<%= language.__('np.') %> Portfolio" class="form-control">
+                                <br>
+                                <p class="username"><%= language.__('Opisz dokładnie czego oczekujesz po stronie') %></p>
+                                <textarea name="whatYouWishN" id="description" placeholder="<%= language.__('np.') %> <%= language.__('Strona bardziej dostosowana do urządzeń mobilnych') %>" class="form-control"></textarea>
+                                <br>
+                                <p class="username"><%= language.__('Wpisz swoje imię i nazwisko') %></p></p>
+                                <input type="text" name="nameN" placeholder="<%= language.__('np.') %> Jan Kowalski" class="form-control">
+                                <br>
+                                <p class="username"><%= language.__('Wpisz email kontaktowy') %></p>
+                                <input type="email" name="emailN" placeholder="<%= language.__('np.') %> jankowalski@gmail.com" class="form-control">
+                                <br>
+                                <input type="submit" value="<%= language.__('Wyślij zamówienie') %>" class="btn btn-primary button">
+                            </div>
+                            <div id="update">
+                                <p class="username"><%= language.__('Wpisz nazwę strony') %></p>
+                                <input type="text" name="websiteTitle" placeholder="<%= language.__('np.') %> Portfolio" class="form-control">
+                                <br>
+                                <p class="username"><%= language.__('Wklej link do aktualnej wersji') %></p>
+                                <input type="text" name="previousWebsite" placeholder="<%= language.__('np.') %> https://wwww.danmag.pl" class="form-control">
+                                <br>
+                                <p class="username"><%= language.__('Opisz dokładnie czego oczekujesz po aktualizacji') %></p>
+                                <textarea name="whatYouWish" id="description" placeholder="<%= language.__('np.') %> <%= language.__('Strona bardziej dostosowana do urządzeń mobilnych') %>" class="form-control"></textarea>
+                                <br>
+                                <p class="username"><%= language.__('Wpisz swoje imię i nazwisko') %></p>
+                                <input type="text" name="name" placeholder="<%= language.__('np.') %> Jan Kowalski" class="form-control">
+                                <br>
+                                <p class="username"><%= language.__('Wpisz email kontaktowy') %></p>
+                                <input type="email" name="email" placeholder="<%= language.__('np.') %> jankowalski@gmail.com" class="form-control">
+                                <br>
+                                <input type="submit" value="<%= language.__('Wyślij zamówienie') %>" class="btn btn-primary button">
+                            </div>
+                        </form>
+                    <% } %>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/script.js" async></script>
+</body>
+</html>

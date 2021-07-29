@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-154851109-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-154851109-1');
+	</script>
+	<meta name="google-site-verification" content="m6HBYXUqFKJFFcrDg1qKzZU2u49hXYN43QUlDmc8Qg4" />
+	<meta name="theme-color" content="#01597c">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="keywords" content="portfolio, maciej kuta, jw society, danmag, syberyjskiecudo, brainonfire, websites, writing, strony, pisanie, responsywne, responsive">	
+    <meta name="description" content="Welcome to my portfolio. I am Maciej Kuta. I am 18. Here you can find more informations about me, my programming adventure and my projects I do or did. Basically I write websites from scratch. I do backend and frontend. I use newest technologies like Node.js and MongoDB. Hope you will like my projects">
+    <title><%= header %></title>
+	<meta name="google-site-verification" content="9FSWyiNz8TkGmlAX0sy3hKJ3g1StIuKKl3AxjNuC09Y" />
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.js" async></script>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,700" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/b2ec1cb26d.js" crossorigin="anonymous" async></script>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" async></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous" async></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous" async></script>
+</head>
+<body>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-black">
+        <div class="container">
+            <a class="navbar-brand" href="/"><img src="/logo.png" alt="logo" id="nav"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="border:none;">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto text-center">
+			<% if(typeof home !== 'undefined'){ %>
+				<li class="nav-item">
+					<a class="nav-link active" href="/">Home</a>
+				</li>
+			<% } else { %>
+				<li class="nav-item">
+					<a class="nav-link" href="/">Home</a>
+				</li>
+      <% } %>
+      <% if(typeof my !== 'undefined'){ %>
+        <li class="nav-item">
+         
+            <a class="nav-link active" href="/projects">
+              <%= language.__("Moje projekty") %>
+            </a>
+            
+        </li>
+       
+      <% } else { %>
+        <li class="nav-item">
+         
+            <a class="nav-link" href="/projects">
+              <%= language.__("Moje projekty") %>
+            </a>
+            
+        </li>
+      <% } %>
+      
+			
+			<% if(typeof about !== 'undefined'){ %>
+				<li class="nav-item">
+					<a class="nav-link active" href="/about"><%= language.__("O mnie") %></a>
+				</li>
+			<% } else { %>
+				<li class="nav-item">
+					<a class="nav-link" href="/about"><%= language.__("O mnie") %></a>
+				</li>
+			<% } %>
+           
+           
+      <% if(typeof bootcamps !== 'undefined'){ %>
+				<li class="nav-item">
+					<a class="nav-link active" href="/bootcamps"><%= language.__("Bootcamp") %></a>
+				</li>
+			<% } else { %>
+				<li class="nav-item">
+					<a class="nav-link" href="/bootcamps"><%= language.__("Bootcamp") %></a>
+				</li>
+			<% } %>
+			
+      <% if(typeof orders !== 'undefined'){ %>
+				<li class="nav-item">
+					<a class="nav-link active" href="/website-orders/description"><%= language.__("Zamówienia") %></a>
+				</li>
+			<% } else { %>
+				<li class="nav-item">
+					<a class="nav-link" href="/website-orders/description"><%= language.__("Zamówienia") %></a>
+				</li>
+			<% } %>
+      <li class="nav-item">
+        <a class="nav-link" href="/support"><%= language.__('Wesprzyj') %></a>
+      </li>  
+     
+        <li class="nav-item">
+          <a class="nav-link" href="https://jw.org/" target="_blank">jw.org</a>
+        </li>  
+           
+			 
+            <% if(typeof currentUser !== 'undefined'){ %>
+              <% if(currentUser.username === "Admin"){ %>
+                <% if(typeof add !== 'undefined'){ %>
+                  <li class="nav-item">
+                    <a class="nav-link active" href="/projects/new">Dodaj projekt</a>
+                  </li>
+                <% } else { %>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/projects/new">Dodaj projekt</a>
+                  </li>
+                <% } %>
+                
+              
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout"><%= language.__('Wyloguj') %></a>
+                </li>
+              <% } else { %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout"><%= language.__('Wyloguj') %></a>
+                </li>
+              <% } %>
+              
+            <% } %>
+        </ul>
+       
+      </div>	
+        </div>	
+     
+        
+        
+    </nav>
+   

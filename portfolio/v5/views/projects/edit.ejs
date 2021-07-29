@@ -1,0 +1,73 @@
+<% include ../partials/headera %>
+<div class="col-lg-6 col-md-12" id="form" style="height: 100%">
+	<div class="row justify-content-center">
+		<div class="col-lg-8 col-md-12" style="margin-top: 5%">
+			<div id="form1">
+				<a href="/projects/<%= project.subpageLink %>">
+					<i class="fas fa-arrow-left"></i>
+					Wróć do strony projektu <%= project.title %>
+				</a>
+				<h1 class="login">Edytuj projekt <%= project.title %></h1>
+				<% if(error.length > 0){ %>
+					<div class="alert alert-danger" role="alert">
+						<%= error %>
+					</div>
+				<% } %>
+				<form action="/projects/<%= project._id %>?_method=PUT" method="post">
+					<label class="username">
+						Edytuj tytuł
+					</label>
+					<input type="text" name="project[title]" value="<%= project.title %>" placeholder="Tytuł projektu"
+						class="form-control">
+					<br>
+					<p class="username">
+						Edytuj opis
+					</p>
+					<textarea name="project[description]" placeholder="Opis projektu" id="polish"
+						class="form-control"><%= project.description %></textarea>
+					<br>
+					<p class="username">
+						Edytuj opis po angielsku
+					</p>
+					<textarea name="project[en]" placeholder="Opis projektu" id="english"
+						class="form-control"><%= project.en %></textarea>
+					<br>
+					<p class="username">
+						Edytuj status
+					</p>
+					<input type="text" name="project[status]" value="<%= project.status %>"
+						placeholder="Status projektu" class="form-control">
+					<br>
+					<p class="username">
+						Edytuj status po angielsku
+					</p>
+					<input type="text" name="project[statusEn]" value="<%= project.statusEn %>"
+						placeholder="Status projektu po angielsku" class="form-control">
+					<br>
+					<p class="username">
+						Edytuj link
+					</p>
+					<input type="text" name="project[link]" value="<%= project.link %>" placeholder="Link do projektu"
+						class="form-control">
+					<br>
+					<p class="username">
+						Edytuj typ
+					</p>
+					<select name="project[type]" class="form-control">
+						<option><%= project.type %></option>
+						<option value="not-ended" style="color:black">Nieskończony</option>
+						<option value="awaiting" style="color:black">Oczekujący</option>
+						<option value="done" style="color:black">Skończony</option>
+					</select>
+					<br>
+					<input type="submit" value="Edytuj projekt" class="btn btn-primary button">
+				</form>
+			</div>
+		</div>
+
+	</div>
+</div>
+</div>
+</body>
+
+</html>

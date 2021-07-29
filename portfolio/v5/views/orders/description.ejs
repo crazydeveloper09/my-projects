@@ -1,0 +1,98 @@
+<% include ../partials/header %>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <% if(success.length > 0){ %>
+                <div class="alert alert-success" role="alert">
+                    <%= success %>
+                </div>
+            <% } %>
+            <div class="card">
+                <div class="card-title text-center">
+                    <br>
+                    <p id="name"> <%= language.__('Zamówienia na stronę') %></p> 
+                    <% if(currentUser){ %>
+                        <a href="/website-orders" class="btn btn-primary button-small">Zobacz zamówienia</a>
+                    <% } %>
+                </div>
+                
+                <div class="card-body">
+                    <p class="whatOffer"><%= language.__('Opis') %></p>
+                    <p class="normal">
+                        <%= language.__('Hej, chętnie przyjmę zlecenie na napisanie strony internetowej lub ' + 
+                        'aktualizacji wyglądu / całej strony. Strony piszę sam od podstaw, nie ' +
+                        'wykorzystuję żadnego szablonu. W związku z tym, że się jeszcze uczę to ' +
+                        'nie czuję się na siłach napisać sklep internetowy.') %>
+                    </p>
+                    <p class="whatOffer"><%= language.__('Co oferuję:') %> </p>
+                    <ul class="normal">
+                        <li>
+                            <%= language.__('Prosty i intuicyjny interfejs użytkownika') %>
+                        </li>
+                        <li>
+                            <%= language.__('Możliwość edycji większości treści z każdego ' +
+                            'miejsca w którym jest ' +
+                            'internet (panel administracyjny zarówno na komputerze i na telefonie)') %>
+                            
+                        </li>
+                        <li>
+                            <%= language.__('Możliwość wybrania kolorów i czcionki') %> 
+                        </li>
+                        <li>
+                            <%= language.__('Wsparcie po napisaniu strony (różne aktualizacje i poprawki)') %>
+                        </li>
+                        <li>
+                            <%= language.__('Pomoc w podłączeniu do domeny') %>
+                        </li>
+                    </ul>
+                  
+                    
+                    <p><strong class="normal"><%= language.__('Nie zajmuję się stronami o charakterze politycznym oraz zawierającymi treści pornograficzne') %></strong></p>    
+                        
+                    <p class="whatOffer"><%= language.__('Dodatkowe informacje') %></p>
+                    <p class="normal">
+                        <%= language.__('Moje dotychczasowe projekty można znaleźć w sekcji "Moje projekty".') %>
+                        <br>
+                        <% if(orders.length >= 2){ %>
+                            <%= language.__('Aktualnie nie przyjmuję nowych zleceń, ponieważ mam ich dużo.') %>
+                            <%= language.__('Jeśli jesteś tutaj, bo ją zamówiłeś to') %> <a href="#" data-toggle="modal" data-target="#checkStatus"><%= language.__('sprawdź status zamówienia') %></a>
+                        <% } else { %>
+                            <%= language.__('Jeśli jesteś zainteresowany') %> <a href="/website-orders/new"><%= language.__('zamów stronę tutaj') %></a>.
+                            <%= language.__('Jeśli już ją zamówiłeś') %> <a href="#" data-toggle="modal" data-target="#checkStatus"><%= language.__('sprawdź status zamówienia') %></a> 
+                        <% } %>
+                        
+                        
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="checkStatus" tabindex="-1" role="dialog" aria-labelledby="addAProject" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="name"><%= language.__('Sprawdź status swojego zamówienia') %></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" style="color: #77a6f2">&times;</span>
+          </button>
+        </div>
+        <form action="/website-orders/check-status" method="get">
+            <div class="modal-body">
+                <p class="normalf"><%= language.__('Wpisz email, który podawałeś przy zamówieniu') %></p>
+                <input type="email" name="email" class="form-control" placeholder="<%= language.__('np.') %> jankowalski@gmail.com">
+            </div>
+           <div class="modal-footer">
+                <input type="submit" value="<%= language.__('Sprawdź') %>" class="btn btn-primary button-small">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><%= language.__('Anuluj') %></button>
+           </div>
+        </form>
+        
+      </div>
+    </div>
+  </div>
+<% include ../partials/footer %>
