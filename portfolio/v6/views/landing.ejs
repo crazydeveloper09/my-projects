@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-154851109-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-154851109-1');
+	</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="keywords" content="portfolio, maciej kuta, jw society, danmag, syberyjskiecudo, brainonfire, websites, writing, strony, pisanie, responsywne, responsive">	
+    <meta name="description" content="Welcome to my portfolio. I am Maciej Kuta. I am 18. Here you can find more informations about me, my programming adventure and my projects I do or did. Basically I write websites from scratch. I do backend and frontend. I use newest technologies like Node.js and MongoDB. Hope you will like my projects">
+    <title><%= header %></title>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,700" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/b2ec1cb26d.js" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/landing.css">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+	<body>
+			<main>
+				<div class="container">
+				
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="content" style="filter: none">
+								<header>
+									<h1 style="text-align:center" id="name">Maciej Kuta</h1>
+								</header>
+								
+
+
+								<p class="text-center landing" id="portfolio"><%= language.__('Witaj na moim portfolio!') %></p>
+								<a class="btn" id="start" href="/projects/last"><%= language.__('Zobacz moje ostatnie projekty') %> </a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+			
+		<script type="text/javascript" id="cookieinfo"
+			src="//cookieinfoscript.com/js/cookieinfo.min.js" data-message="<%= language.__('Używam plików cookies (tzw.ciasteczek), by poprawić jakość używania strony. Przez kliknięcie x zgadzasz się na zbieranie danych. Masz możliwość wyłączenia ich w przeglądarce.') %>" data-bg="#645862" data-moreinfo="https://youronlinechoices.eu" data-linkmsg="www.youronlinechoices.eu" data-fg="black" data-text-align="left" data-font-size="11px">
+		</script>
+		
+	</body>
+</html>
