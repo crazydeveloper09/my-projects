@@ -1,0 +1,82 @@
+@font-face {
+    font-family: "Kinetika";
+    src: url("Kinetika/Kinetika\ Semi\ Bold.ttf") format("truetype");
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background: #ede8e3;
+    font-family: 'Kinetika';
+  }
+  #info {
+    background: #ede8e3;
+    height: 100vh;
+  }
+  #form {
+    background:#ede8e3;
+    height: 100vh;
+  }
+  
+  a {
+    
+    font-size: 20px;
+    color:  #b0583a;
+    text-decoration: none;
+  }
+  
+  .active {
+    color: goldenrod;
+  }
+  
+  .form-control:focus,
+  .form-select:focus {
+      border: 3px solid #b0583a;
+      box-shadow: none;
+  }
+  
+  
+  
+  #form .login {
+    
+    font-size: 45px;
+    font-weight: 700;
+    color:#b0583a;
+    margin-top: 20px;
+    margin-bottom: 35px;
+  }
+  
+  #form .username {
+    
+    font-size: 18px;
+    font-weight: 700;
+    color: #b0583a;
+  }
+  
+  .button {
+    width: 100%;
+    margin-bottom: 15px;
+    
+    font-weight: 700;
+    color: #ede8e3;
+    background: #b0583a;
+    border-color: #b0583a;
+  }
+  
+  @media (max-width: 992px) {
+    #info {
+        display: none;
+    }
+    #form1 {
+        margin: 4%;
+    }
+    body {
+      margin: 0;
+      background:#ede8e3;
+    }
+    .container-full {
+      margin: 0;
+    }
+  }
+  
+  

@@ -1,0 +1,42 @@
+<%- include("../partials/headera") %>
+<div class="col-lg-6 col-md-12" id="form">
+	<div class="row justify-content-center">
+		<div class="col-lg-8 col-md-12" style="margin-top: 17%">
+			<div id="form1">
+				<a href="/projects/category/<%= category.link%>">
+					<i class="fas fa-arrow-left"></i>
+					Wróć do strony kategorii
+				</a>
+				<h1 class="login">dodaj projekt do kategorii <%= category.title %></h1>
+				<% if(error.length > 0){ %>
+					<div class="alert alert-danger" role="alert">
+						<%= error %>
+					</div>
+				<% } %>
+                <form action="/projects/category/<%= category._id %>/addP" method="post">
+                        
+                    <div class="form-floating mb-3">
+                   
+                        <select name="project" id="project" class="form-select">
+                            <% projects.forEach((project) => { %>
+                                <option value="<%= project._id %>"><%= project.title %></option>
+                            <% }) %>
+                        </select>
+                        <label for="title" class="username">
+                            Wybierz projekt
+                            
+                        </label>
+                        
+                    </div>
+                   
+                    
+                        
+                    <input type="submit" value="Dodaj projekt do kategorii" class="btn btn-danger button">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>
+</body>

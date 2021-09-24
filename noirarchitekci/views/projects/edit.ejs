@@ -1,0 +1,109 @@
+<%- include("../partials/headera") %>
+<div class="col-lg-6 col-md-12" id="form" style="height: 100%">
+	<div class="row justify-content-center">
+		<div class="col-lg-8 col-md-12" style="margin-top: 5%">
+			<div id="form1">
+				<a href="/projects/<%= project.subpageLink %>">
+					<i class="fas fa-arrow-left"></i>
+					Wróć do strony projektu
+				</a>
+				<h1 class="login">Edytuj projekt <%= project.title %></h1>
+				<% if(error.length > 0){ %>
+					<div class="alert alert-danger" role="alert">
+						<%= error %>
+					</div>
+				<% } %>
+				
+				<form action="/projects/<%= project._id %>?_method=PUT" method="post">
+				   
+					
+					<div class="form-floating mb-3">
+                       
+						<input type="text" autocomplete="off" id="title" name="project[title]" value="<%= project.title %>" placeholder="np. Portfolio" class="form-control">
+						<label for="title" class="username">
+							Tytuł projektu
+							
+						</label>
+						
+					</div>
+					
+					
+					<div class="form-floating mb-3">
+                       
+						<textarea name="project[important]" placeholder="np. Fajny, dla mojego przyjaciela" id="important" class="form-control"><%= project.important %></textarea>
+						<label for="important" class="username">
+							Opis (ten grubszy)
+							
+						</label>
+						
+					</div>
+					
+					
+					<div class="form-floating mb-3">
+                       
+						<textarea name="project[info1]" placeholder="Nic" id="info1" class="form-control"><%= project.info1 %></textarea>
+						<label for="info1" class="username">
+							Opis (normalny po lewej)
+							
+						</label>
+						
+					</div>
+					<div class="form-floating mb-3">
+                       
+						<textarea name="project[info2]" placeholder="Nic" id="info2" class="form-control"><%= project.info2 %></textarea>
+						<label for="info2" class="username">
+							Opis (normalny po prawej)
+							
+						</label>
+						
+					</div>
+					
+					<div class="form-floating mb-3">
+                       
+						<input type="text" autocomplete="off" id="status" name="project[status]" value="<%= project.status %>" placeholder="np. Tylko poprawki" class="form-control">
+						<label for="status" class="username">
+							Status projektu
+							
+						</label>
+						
+					</div>
+					
+					
+					<div class="form-floating mb-3">
+                       
+						<input type="text" autocomplete="off" id="client" name="project[client]" placeholder="Budownictwo MaciejKa" value="<%= project.client %>" class="form-control">
+						<label for="client" class="username">
+							Klient
+							
+						</label>
+						
+					</div>
+					
+					
+					<div class="form-floating mb-3">
+                       
+						<input type="number" autocomplete="off" id="year" name="project[year]" placeholder="Rok" min="1900" max="2099" step="1" value="<%= project.year %>"  class="form-control">
+						<label for="year" class="username">
+							Rok realizacji
+							
+						</label>
+						
+					</div>
+					
+					
+					
+				
+					<input type="submit" value="Edytuj projekt" class="btn btn-danger button">
+				   
+				</form>
+			</div>
+		   
+		</div>
+		
+	</div>
+</div>
+        
+            
+           
+</html>
+</body>

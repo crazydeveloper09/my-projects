@@ -1,0 +1,127 @@
+<%- include("../partials/headera") %>
+<div class="col-lg-6 col-md-12" id="form" style="height: 100%">
+	<div class="row justify-content-center">
+		<div class="col-lg-8 col-md-12" style="margin-top: 5%">
+			<div id="form1">
+				<a href="/">
+					<i class="fas fa-arrow-left"></i>
+					Wróć do strony głównej
+				</a>
+				<h1 class="login">Dodaj nowy projekt</h1>
+				<% if(error.length > 0){ %>
+					<div class="alert alert-danger" role="alert">
+						<%= error %>
+					</div>
+				<% } %>
+				
+				<form action="/projects" method="post" enctype="multipart/form-data">
+				   
+					
+					<div class="form-floating mb-3">
+                       
+						<input type="text" autocomplete="off" id="title" name="title" placeholder="np. Portfolio" class="form-control">
+						<label for="title" class="username">
+							Tytuł projektu
+							
+						</label>
+						
+					</div>
+					
+					
+					<div class="form-floating mb-3">
+                       
+						<textarea name="important" placeholder="np. Fajny, dla mojego przyjaciela" id="important" class="form-control"></textarea>
+						<label for="important" class="username">
+							Opis (ten grubszy)
+							
+						</label>
+						
+					</div>
+					
+					
+					<div class="form-floating mb-3">
+                       
+						<textarea name="info1" placeholder="Nic" id="info1" class="form-control"></textarea>
+						<label for="info1" class="username">
+							Opis (normalny po lewej)
+							
+						</label>
+						
+					</div>
+					<div class="form-floating mb-3">
+                       
+						<textarea name="info2" placeholder="Nic" id="info2" class="form-control"></textarea>
+						<label for="info2" class="username">
+							Opis (normalny po prawej)
+							
+						</label>
+						
+					</div>
+					
+					<div class="form-floating mb-3">
+                       
+						<input type="text" autocomplete="off" id="status" name="status" placeholder="np. Tylko poprawki" class="form-control">
+						<label for="status" class="username">
+							Status projektu
+							
+						</label>
+						
+					</div>
+					
+					
+					<div class="form-floating mb-3">
+                       
+						<input type="text" autocomplete="off" id="client" name="client" placeholder="Budownictwo MaciejKa" class="form-control">
+						<label for="client" class="username">
+							Klient
+							
+						</label>
+						
+					</div>
+					
+					
+					<div class="form-floating mb-3">
+                       
+						<input type="number" autocomplete="off" id="year" name="year" placeholder="Rok" min="1900" max="2099" step="1" value="2016"  class="form-control">
+						<label for="year" class="username">
+							Rok realizacji
+							
+						</label>
+						
+					</div>
+					<div class="form-floating mb-3">
+                       
+						<select name="category" id="category" class="form-select">
+							<% categories.forEach((category) => { %>
+								<option value="<%= category._id %>"><%= category.name %></option>
+							<% }) %>
+						</select>
+						<label for="category" class="username">
+							Wybierz kategorię
+							
+						</label>
+						
+					</div>
+					
+					<label for="password" class="username">
+						Zdjęcie główne projektu
+						
+					</label>
+					<input type="file" name="profile" style="color:#c9c7c7">
+					<br>
+					<br>
+				
+					<input type="submit" value="Dodaj projekt" class="btn btn-danger button">
+				   
+				</form>
+			</div>
+		   
+		</div>
+		
+	</div>
+</div>
+        
+            
+           
+</html>
+</body>

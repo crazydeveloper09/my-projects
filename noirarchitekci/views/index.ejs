@@ -1,0 +1,83 @@
+<%- include("partials/header") %>
+
+<div class="container" style="margin-top: 0;">
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <img src="/photos/jumbotron.jpg" alt="" width="100%" class="img-thumbnail">
+        </div>
+    </div>
+    <div class="row section">
+        <div class="col-lg-12">
+            <h1 id="about" class="header">O nas</h1>
+        </div>
+       <div class="col-lg-6 col-md-12 text-center">
+           <img alt="nasze" id="about_photo">
+       </div>
+        <div class="col-lg-6 col-md-12 text-justify">
+            <h4 id="about_bigger">
+                
+            </h4>
+            <div class="row">
+                <div class="col-lg-6">
+                    <p id="about_left">
+                       
+                    </p>
+                </div>
+                <div class="col-lg-6">
+                    <p id="about_right">
+                        
+                    </p>
+                </div>
+                <% if(currentUser){ %>
+                    <div class="col-lg-12">
+                        <a href="/user/<%= currentUser._id %>/edit/picture">Edytuj zdjęcie</a>
+                        <a href="/user/<%= currentUser._id %>/edit">Edytuj o mnie</a>
+                    </div>
+                    
+                <% } %>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row section">
+        <div class="col-lg-12">
+            <h1 id="projects" class="header">Projekty</h1>
+          
+            <% if(currentUser){ %>
+                <br>
+                    <a href="/projects/category/add">Dodaj kategorię</a>
+                
+                
+            <% } %>
+        </div>
+       <div class="col-lg-6 col-md-12" id="categoriesBtns">
+           
+       </div>
+        <div class="col-lg-6 col-md-12 text-justify">
+            <h4 id="cat_bigger">
+               
+            </h4>
+            
+                    <p id="cat_normal">
+                        
+                    </p>
+                    <% if(currentUser){ %>
+                        <a href="" id="cat_edit">Edytuj kategorię</a>
+                        
+                        <a href="" id="cat_delete">Usuń kategorię</a>
+                    <% } %>  
+                    
+        </div>
+    </div>
+    <div class="row section">
+        
+            <div class="col-lg-12 text-lg-right text-md-center">
+                <div class="row justify-content-end" id="projectsDiv">
+                   
+                </div>
+           
+        </div>
+    </div>
+</div>
+
+<%- include("partials/footer") %>

@@ -1,0 +1,88 @@
+<%- include("../partials/header") %>
+
+<div class="container" style="margin-top: 0;">
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <img src="<%= project.mainPhoto %>" alt="" width="100%" class="img-thumbnail">
+        </div>
+    </div>
+    <div class="row section">
+        <div class="col-lg-12">
+            <h1 id="about" class="header"><%= project.title %></h1>
+        </div>
+       <div class="col-lg-6 col-md-12">
+           
+        <a href="/#projects">Cofnij / Projekty</a>
+       </div>
+        <div class="col-lg-6 col-md-12 text-justify">
+            <h4 style="width: 100%;" id="project_bigger">
+                <%= project.important %>
+            </h4>
+            <div class="row">
+                <div class="col-lg-6">
+                    <p>
+                        <%= project.info1 %>
+                    </p>
+                </div>
+                <div class="col-lg-6">
+                    <p>
+                        <%= project.info2 %>
+                    </p>
+                </div>
+                <% if(currentUser){ %>
+                    <div class="col-lg-12">
+                        <a href="/projects/<%= project._id %>/edit/picture">Edytuj zdjęcie główne</a>
+                        <br>
+                        <a href="/projects/<%= project._id %>/edit">Edytuj projekt</a>
+                        <br>
+                        <a href="/projects/<%= project._id %>/edit/brick-picture">Edytuj zdjęcie kostkowe</a>
+                        <br>
+                        <a href="/projects/<%= project._id %>/new/picture">Dodaj zdjęcie do galerii</a>
+                    </div>
+                    
+                <% } %>
+            </div>
+        </div>
+    </div>
+    <hr>
+    
+    <div class="row section text-uppercase">
+        <div class="col-lg-4 text-center">
+            
+                Klient
+                <br>
+                <strong>
+                    <%= project.client %>
+                </strong>
+        
+        </div>
+        <div class="col-lg-4 text-center">
+            Status
+                <br>
+                <strong>
+                    <%= project.status %>
+                </strong>
+        </div>
+        <div class="col-lg-4 text-center">
+            Rok realizacji
+                <br>
+                <strong>
+                    <%= project.year %>
+                </strong>
+        </div>
+    </div>
+    <div class="row section">
+        <% if(project.gallery.length !== 0){ %>
+            <% project.gallery.forEach((picture) => { %>
+                <div class="col-lg-12 text-center">
+            
+                    <img src="<%= picture.link %>" alt="Zdjęcie galerii projektu <%= project.title %>" class="img-thumbnail">
+                </div>
+            <% }) %>
+        <% } %>
+        
+        
+    </div>
+</div>
+
+<%- include("../partials/footer") %>

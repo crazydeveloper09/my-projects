@@ -1,0 +1,108 @@
+<html lang="pl">
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-72RZ3X0FDD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-72RZ3X0FDD');
+</script>
+	
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<meta name="description" content="">
+  <meta name="keywords" content="Leszno, projekty, architektura, wnętrza, grafiki, noir architekci">
+	<meta name="theme-color" content="#fff">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        <%= header %>
+    </title>
+	<meta name="google-site-verification" content="9FSWyiNz8TkGmlAX0sy3hKJ3g1StIuKKl3AxjNuC09Y" />
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.js" async></script>
+    <link href="/Kinetika/Kinetika Semi Bold.ttf">
+    <link href="/Kinetika/Kinetika Bold.ttf">
+    <script src="https://kit.fontawesome.com/b2ec1cb26d.js" crossorigin="anonymous" async></script>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous" async></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous" async></script>
+  
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-black" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="/"><img src="" alt="logo" id="logoImg"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="border:none;">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto text-center">
+			
+        	    <li class="nav-item">
+					<a class="nav-link active" href="/#about">O nas</a>
+				</li>
+      
+                <li class="nav-item">
+                   
+                        <a class="nav-link" href="/#projects">
+                           Projekty
+                        </a>
+                        
+                    
+                </li>
+ 
+				        <li class="nav-item">
+                    
+                        <a class="nav-link" href="/#contact">
+                           Kontakt
+                        </a>
+                        
+                </li>
+			
+      
+                <li class="nav-item">
+                   
+                        <a class="nav-link" id="facebook">
+                           Facebook
+                        </a>
+                        
+                        
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="instagram">Instagram</a>
+                </li>
+			 
+                <% if(currentUser){ %>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/projects/new">Dodaj projekt</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/logout">Wyloguj</a>
+                  </li>
+                <% } %>
+                  
+               
+              
+                
+                  
+              
+        </ul>
+       
+      </div>	
+        </div>	
+     
+        
+        
+    </nav>
+
+    <script>
+      if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+            document.getElementById("logoImg").setAttribute("src", "/logo.png");
+        } else {
+          document.getElementById("logoImg").setAttribute("src", "/logo.jpg");
+        }
+    </script>

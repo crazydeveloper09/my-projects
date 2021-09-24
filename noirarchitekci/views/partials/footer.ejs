@@ -1,0 +1,139 @@
+
+    <div class="container" id="footer">
+        
+        <div class="row footerSection">
+            <div class="col-lg-12">
+                <h1 id="contact" class="header">Kontakt</h1>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <h3>
+                    W razie pytań lub jeśli chcesz się po prostu przywitać, napisz do Nas.
+                </h3>
+            </div>
+            <div class="col-lg-4 col-md-12 text-center">
+                <a style="text-transform: none;" id="mail"></a><br>
+                <a style="text-transform: none;" id="phone"></a>
+            </div>
+            <div class="col-lg-4 col-md-12 text-center">
+                <p id="contactP">
+                   
+                </p>
+               
+            </div>
+        </div>
+		<div class="row justify-content-center">
+			<div class="col-lg-6 col-md-12">
+				<% if(success.length> 0){ %>
+					
+								<div class="alert alert-success text-center" role="alert">
+									<%= success %>
+								</div>
+							
+						
+			
+					<% } %>
+					<form action="/feedback" method="POST" id="feedBack">
+						<div class="row">
+							<div class="col-lg-6 col-md-12">
+								<input required type="text" name="name" placeholder="Imię i nazwisko" maxlength="30" class="form-control">
+							</div>
+							<div class="col-lg-6 col-md-12">
+								<input required type="email" name="from" placeholder="Adres email" class="form-control">
+							</div>
+							<div class="col-lg-6 col-md-12">
+								<input required type="tel" name="phone" placeholder="Nr telefonu" pattern="[0-9]{3} [0-9]{3} [0-9]{3}" class="form-control">
+							</div>
+							<div class="col-lg-6 col-md-12">
+								<input required type="text" name="topic" placeholder="Temat wiadomości" class="form-control">
+							</div>
+							<div class="col-lg-12">
+								<textarea required placeholder="Treść wiadomości" id="textarea" name="text" class="form-control"></textarea>
+								<div class="text-center" style="margin-bottom: 11px;">
+									<button type="submit" id="send">
+										<i class="far fa-paper-plane icon"></i>
+										Wyślij <strong>wiadomość</strong>
+									</button>
+									
+								   
+								</div>
+							</div>
+						</div>
+						
+						
+						
+					</form>
+				
+			</div>
+		</div>
+        <div class="row">
+            <div class="col-lg-12">
+                <p class="footer text-center">
+                    
+                    Noir Architekci <script>document.write(new Date().getFullYear())</script> &copy; Wszelkie prawa zastrzeżone
+                 </p>
+                
+                 <p class="footer text-center">
+                    <% if(return_route){ %>
+                        <a href="/login?return_route=<%= return_route %>" style="text-transform: none; font-size: 13px;">panel
+                            administracyjny</a>
+                    <% } else { %>
+                        <a href="/login?return_route=<%= route %>" style="text-transform: none; font-size: 13px;">panel
+                            administracyjny</a>
+                    <% } %>
+                    
+                    
+                 </p>
+            </div>
+                
+           
+        </div>
+    </div>
+	
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" async></script>
+<script src="/script.js"></script>
+<script>
+	
+	
+	axios
+		.get("/api/user")
+		.then((response) => {
+			
+			contact = document.getElementById("contactP");
+			aLinkMail = document.getElementById("mail");
+			aLinkPhone = document.getElementById("phone");
+			aLinkFacebook = document.getElementById("facebook");
+            aLinkInsta = document.getElementById("instagram");
+			span = document.createElement("span");
+			contact.innerHTML = `ul. ${response.data.street}
+													<br>
+													${response.data.postCode} ${response.data.city}
+													`
+			aLinkPhone.setAttribute("href", `tel: ${response.data.phone}`);
+			aLinkPhone.innerText = response.data.phone;
+			
+			aLinkMail.setAttribute("href", `mailto: ${response.data.email}`);
+			aLinkMail.innerText = response.data.email;
+			
+			aLinkFacebook.setAttribute("href", `${response.data.facebook}`);
+			aLinkFacebook.setAttribute("target", "_blank")
+            aLinkInsta.setAttribute("href", `${response.data.instagram}`);
+			aLinkInsta.setAttribute("target", "_blank")
+			
+			document.getElementById("about_photo").setAttribute("src", response.data.photo);
+			document.getElementById("about_bigger").innerText = response.data.important;
+            document.getElementById("about_left").innerText = response.data.info1;
+            document.getElementById("about_right").innerText = response.data.info2;
+									
+		})
+		.catch((err) => {
+
+		})
+		document.getElementById("feedBack").addEventListener("submit", function(){
+			document.getElementById("send").setAttribute("disabled", "disabled");
+			document.getElementById("send").innerText = `Wysyłanie...`;
+    	})
+</script>
+
+</body>
+</html>
