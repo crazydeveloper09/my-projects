@@ -9,6 +9,14 @@
     <div class="row section">
         <div class="col-lg-12">
             <h1 id="about" class="header"><%= project.title %></h1>
+            <% if(!project.published){ %>
+                <p style="font-size: 17px;">
+                    <strong>
+                        <em>Wersja robocza</em>
+                    </strong>
+                </p>
+            <% } %>
+            
         </div>
        <div class="col-lg-6 col-md-12">
            
@@ -35,6 +43,11 @@
                         <br>
                         <a href="/projects/<%= project._id %>/edit">Edytuj projekt</a>
                         <br>
+                        <% if(!project.published){ %>
+                            <a href="/projects/<%= project._id %>/publish">Opublikuj projekt</a>
+                            <br>
+                        <% } %>
+                        
                         <a href="/projects/<%= project._id %>/edit/brick-picture">Edytuj zdjęcie kostkowe</a>
                         <br>
                         <a href="/projects/<%= project._id %>/new/picture">Dodaj zdjęcie do galerii</a>
