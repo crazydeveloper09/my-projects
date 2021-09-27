@@ -6,20 +6,21 @@ function changeCategory(categoryName){
     .get(`/api/category/${categoryName}`)
     .then((response) => {
         let categoriesBtns = document.getElementsByTagName("button");
-        console.log(response.data.projects.length === 0)
-        document.getElementById("cat_bigger").innerText = response.data.important;
-        document.getElementById("cat_normal").innerText = response.data.info;
+        console.log(response.data)
+
+        document.getElementById("cat_bigger").innerText = response.data.category.important;
+        document.getElementById("cat_normal").innerText = response.data.category.info;
        
-        if(response.data.projects.length === 0){
+        if(response.data.published.length === 0){
             const alert = document.createElement("div");
             alert.setAttribute("class", "alert alert-info");
-            alert.innerText = `Nie posiadamy projektów w kategorii ${response.data.name}`;
+            alert.innerText = `Nie posiadamy projektów w kategorii ${response.data.category.name}`;
             document.getElementById("projectsDiv").innerText = "";
             document.getElementById("projectsDiv").appendChild(alert);
         } else {
             document.getElementById("projectsDiv").innerText = "";
            
-            response.data.projects.forEach((project) => {
+            response.data.published.forEach((project) => {
                 console.log(project)
                 let imgWrap = document.createElement("div");
                 let img = document.createElement("img");
