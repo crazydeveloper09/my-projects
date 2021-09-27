@@ -16,7 +16,11 @@ let projectSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: "Picture"
         }
-    ]
+    ],
+    published: {
+        type: Boolean,
+        default: false
+    }
     
 })
 
