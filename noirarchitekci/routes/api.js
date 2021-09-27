@@ -19,7 +19,13 @@ router.get("/category/:category_name", (req, res) => {
         if(err){
             res.json(err);
         } else {
-            res.json(category);
+            let published = [];
+            category.projects.forEach((project) => {
+                if(project.published){
+                    published.push(project)
+                }
+            })
+            res.json({category, published});
         }
     })
 })

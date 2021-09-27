@@ -209,6 +209,18 @@ router.put("/:id", isLoggedIn, function(req, res){
     });
 });
 
+router.get("/:id/publish", isLoggedIn, function(req, res){
+    Project.findById(req.params.id, function(err, project){
+        if(err) {
+            console.log(err);
+        } else {
+            project.published = true;
+            project.save();
+            res.redirect("/projects/" + project.subpageLink);
+        }
+    });
+});
+
 router.get("/:id/delete", isLoggedIn, function(req, res){
     Project.findByIdAndDelete(req.params.id, function(err, deletedProject){
         if(err) {
