@@ -13,11 +13,11 @@
 						<%= error %>
 					</div>
 				<% } %>
-                <form action="/projects/category/<%= category._id %>?_method=PUT" method="post">
+                <form action="/projects/category/<%= category._id %>?_method=PUT" method="post" id="form">
                         
                     <div class="form-floating mb-3">
                        
-                        <input type="text" id="name" name="category[name]" value="<%= category.name %>" class="form-control" placeholder="Tytuł po polsku">
+                        <input required type="text" id="name" name="category[name]" value="<%= category.name %>" class="form-control" placeholder="Tytuł po polsku">
                         <label for="name" class="username">
                             Nazwa
                             
@@ -28,7 +28,7 @@
                     
                     <div class="form-floating mb-3">
                    
-                        <textarea name="category[important]" id="important" class="form-control"><%= category.important %></textarea>
+                        <textarea required name="category[important]" id="important" class="form-control"><%= category.important %></textarea>
                         <label for="important" class="username">
                             Opis (ten większy)
                             
@@ -38,7 +38,7 @@
                   
                         <div class="form-floating mb-3">
                    
-                            <textarea name="category[info]" id="info1" class="form-control"><%= category.info %></textarea>
+                            <textarea required name="category[info]" id="info1" class="form-control"><%= category.info %></textarea>
                             <label for="info1" class="username">
                                Opis (ten normalny)
                                 
@@ -46,12 +46,17 @@
                             
                         </div>
                         
-                    <input type="submit" value="Edytuj kategorię" class="btn btn-danger button">
+                    <input type="submit" value="Edytuj kategorię" class="btn btn-danger button" id="send">
                 </form>
             </div>
         </div>
     </div>
 </div>
-
+<script>
+    document.getElementById("form").addEventListener("submit", function(){
+        document.getElementById("send").setAttribute("disabled", "disabled");
+        document.getElementById("send").innerText = `Edytowanie...`;
+    })
+</script>   
 </body>
 </html>

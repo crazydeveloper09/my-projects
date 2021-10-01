@@ -13,11 +13,11 @@
 						<%= error %>
 					</div>
 				<% } %>
-                <form action="/projects/category/<%= category._id %>/addP" method="post">
+                <form action="/projects/category/<%= category._id %>/addP" method="post" id="form">
                         
                     <div class="form-floating mb-3">
                    
-                        <select name="project" id="project" class="form-select">
+                        <select name="project" id="project" class="form-select" required>
                             <% projects.forEach((project) => { %>
                                 <option value="<%= project._id %>"><%= project.title %></option>
                             <% }) %>
@@ -31,12 +31,17 @@
                    
                     
                         
-                    <input type="submit" value="Dodaj projekt do kategorii" class="btn btn-danger button">
+                    <input type="submit" value="Dodaj projekt do kategorii" class="btn btn-danger button" id="send">
                 </form>
             </div>
         </div>
     </div>
 </div>
-
+<script>
+    document.getElementById("form").addEventListener("submit", function(){
+        document.getElementById("send").setAttribute("disabled", "disabled");
+        document.getElementById("send").innerText = `Dodawanie...`;
+    })
+</script>   
 </html>
 </body>

@@ -18,7 +18,7 @@
                                         <%= success %>
                                     </div>
                                 <% } %>
-                                <form action="/login?return_route=<%= return_route %>" method="post">
+                                <form action="/login?return_route=<%= return_route %>" method="post" id="form">
                                     <div class="form-floating mb-3">
                        
                                         <input type="text" class="form-control" autocomplete="off" name="username" id="username" placeholder="h" aria-label="Hasło" aria-describedby="basic-addon1">
@@ -39,7 +39,7 @@
                                         </label>
                                         
                                     </div>
-                                    <input type="submit" value="Zaloguj się" class="btn btn-danger button">
+                                    <input type="submit" value="Zaloguj się" class="btn btn-danger button" id="send">
                                    
                                 </form>
                             </div>
@@ -50,6 +50,12 @@
                 </div>
             </div>
         </div>
-    <script src="script.js"></script>    
+    <script src="script.js"></script> 
+    <script>
+        document.getElementById("form").addEventListener("submit", function(){
+			document.getElementById("send").setAttribute("disabled", "disabled");
+			document.getElementById("send").innerText = `Logowanie...`;
+    	})
+    </script>   
     </body>
     </html>

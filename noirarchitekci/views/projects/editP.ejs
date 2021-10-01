@@ -13,15 +13,15 @@
 						<%= error %>
 					</div>
 				<% } %>
-                     <form action="/projects/<%= project._id %>/edit/picture" method="post" enctype="multipart/form-data">
+                     <form action="/projects/<%= project._id %>/edit/picture" method="post" enctype="multipart/form-data" id="form">
                         
                         <p class="username">
                             Wybierz zdjęcie
                          </p>
-                        <input type="file" name="picture">
+                        <input type="file" name="picture" required>
                         <br>
                         <br>
-                        <input type="submit" value="Edytuj zdjęcie główne do projektu" class="btn btn-danger button">
+                        <input type="submit" value="Edytuj zdjęcie główne do projektu" class="btn btn-danger button" id="send">
                     </form>
                 </div>
             </div>
@@ -29,5 +29,11 @@
         </div>
     </div>
 </div>
+<script>
+    document.getElementById("form").addEventListener("submit", function(){
+        document.getElementById("send").setAttribute("disabled", "disabled");
+        document.getElementById("send").innerText = `Edytowanie...`;
+    })
+</script>   
 </html>
 </body>

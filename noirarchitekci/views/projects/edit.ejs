@@ -14,12 +14,12 @@
 					</div>
 				<% } %>
 				
-				<form action="/projects/<%= project._id %>?_method=PUT" method="post">
+				<form action="/projects/<%= project._id %>?_method=PUT" method="post" id="form">
 				   
 					
 					<div class="form-floating mb-3">
                        
-						<input type="text" autocomplete="off" id="title" name="project[title]" value="<%= project.title %>" placeholder="np. Portfolio" class="form-control">
+						<input required type="text" autocomplete="off" id="title" name="project[title]" value="<%= project.title %>" placeholder="np. Portfolio" class="form-control">
 						<label for="title" class="username">
 							Tytuł projektu
 							
@@ -30,7 +30,7 @@
 					
 					<div class="form-floating mb-3">
                        
-						<textarea name="project[important]" placeholder="np. Fajny, dla mojego przyjaciela" id="important" class="form-control"><%= project.important %></textarea>
+						<textarea required name="project[important]" placeholder="np. Fajny, dla mojego przyjaciela" id="important" class="form-control"><%= project.important %></textarea>
 						<label for="important" class="username">
 							Opis (ten grubszy)
 							
@@ -41,7 +41,7 @@
 					
 					<div class="form-floating mb-3">
                        
-						<textarea name="project[info1]" placeholder="Nic" id="info1" class="form-control"><%= project.info1 %></textarea>
+						<textarea required name="project[info1]" placeholder="Nic" id="info1" class="form-control"><%= project.info1 %></textarea>
 						<label for="info1" class="username">
 							Opis (normalny po lewej)
 							
@@ -50,7 +50,7 @@
 					</div>
 					<div class="form-floating mb-3">
                        
-						<textarea name="project[info2]" placeholder="Nic" id="info2" class="form-control"><%= project.info2 %></textarea>
+						<textarea required name="project[info2]" placeholder="Nic" id="info2" class="form-control"><%= project.info2 %></textarea>
 						<label for="info2" class="username">
 							Opis (normalny po prawej)
 							
@@ -60,7 +60,7 @@
 					
 					<div class="form-floating mb-3">
                        
-						<input type="text" autocomplete="off" id="status" name="project[status]" value="<%= project.status %>" placeholder="np. Tylko poprawki" class="form-control">
+						<input required type="text" autocomplete="off" id="status" name="project[status]" value="<%= project.status %>" placeholder="np. Tylko poprawki" class="form-control">
 						<label for="status" class="username">
 							Status projektu
 							
@@ -71,7 +71,7 @@
 					
 					<div class="form-floating mb-3">
                        
-						<input type="text" autocomplete="off" id="client" name="project[client]" placeholder="Budownictwo MaciejKa" value="<%= project.client %>" class="form-control">
+						<input required type="text" autocomplete="off" id="client" name="project[client]" placeholder="Budownictwo MaciejKa" value="<%= project.client %>" class="form-control">
 						<label for="client" class="username">
 							Klient
 							
@@ -82,7 +82,7 @@
 					
 					<div class="form-floating mb-3">
                        
-						<input type="number" autocomplete="off" id="year" name="project[year]" placeholder="Rok" min="1900" max="2099" step="1" value="<%= project.year %>"  class="form-control">
+						<input required type="number" autocomplete="off" id="year" name="project[year]" placeholder="Rok" min="1900" max="2099" step="1" value="<%= project.year %>"  class="form-control">
 						<label for="year" class="username">
 							Rok realizacji
 							
@@ -93,7 +93,7 @@
 					
 					
 				
-					<input type="submit" value="Edytuj projekt" class="btn btn-danger button">
+					<input type="submit" value="Edytuj projekt" class="btn btn-danger button" id="send">
 				   
 				</form>
 			</div>
@@ -104,6 +104,11 @@
 </div>
         
             
-           
+<script>
+	document.getElementById("form").addEventListener("submit", function(){
+		document.getElementById("send").setAttribute("disabled", "disabled");
+		document.getElementById("send").innerText = `Edytowanie...`;
+	})
+</script>             
 </html>
 </body>

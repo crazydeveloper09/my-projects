@@ -13,7 +13,7 @@
 						<%= error %>
 					</div>
 				<% } %>
-                    <form action="/projects/category" method="post">
+                    <form action="/projects/category" method="post" id="form">
                         
                         <div class="form-floating mb-3">
                        
@@ -47,13 +47,18 @@
                             </div>
                             
 							
-                        <input type="submit" value="Dodaj kategorię" class="btn btn-danger button">
+                        <input type="submit" value="Dodaj kategorię" class="btn btn-danger button" id="send">
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
+<script>
+    document.getElementById("form").addEventListener("submit", function(){
+        document.getElementById("send").setAttribute("disabled", "disabled");
+        document.getElementById("send").innerText = `Dodawanie...`;
+    })
+</script>   
 </body>
 </html>

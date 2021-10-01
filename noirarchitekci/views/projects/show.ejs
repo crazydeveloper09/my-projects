@@ -1,11 +1,14 @@
 <%- include("../partials/header") %>
 
 <div class="container" style="margin-top: 0;">
-    <div class="row">
-        <div class="col-lg-12 text-center">
-            <img src="<%= project.mainPhoto %>" alt="" width="100%" class="img-thumbnail">
+    <% if(project.mainPhoto){ %>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <img src="<%= project.mainPhoto %>" alt="" width="100%" class="img-thumbnail">
+            </div>
         </div>
-    </div>
+    <% } %>
+    
     <div class="row section">
         <div class="col-lg-12">
             <h1 id="about" class="header"><%= project.title %></h1>

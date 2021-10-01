@@ -18,10 +18,10 @@
                                         <%= success %>
                                     </div>
                                 <% } %>
-                                <form action="/user/<%= user._id %>?_method=PUT" method="post">
+                                <form action="/user/<%= user._id %>?_method=PUT" method="post" id="form">
                                     <div class="form-floating mb-3">
                        
-                                        <input type="text" class="form-control" autocomplete="off" name="user[username]" id="username" value="<%= user.username %>" placeholder="h" aria-label="Hasło" aria-describedby="basic-addon1">
+                                        <input required type="text" class="form-control" autocomplete="off" name="user[username]" id="username" value="<%= user.username %>" placeholder="h" aria-label="Hasło" aria-describedby="basic-addon1">
                                         <label for="username" class="username">
                                             Nazwa użytkownika
                                             
@@ -30,7 +30,7 @@
                                     </div>
                                     <div class="form-floating mb-3">
                        
-                                        <textarea name="user[important]" placeholder="np. Fajny, dla mojego przyjaciela" id="important" class="form-control"><%= user.important %></textarea>
+                                        <textarea required name="user[important]" placeholder="np. Fajny, dla mojego przyjaciela" id="important" class="form-control"><%= user.important %></textarea>
                                         <label for="important" class="username">
                                             Opis (ten grubszy)
                                             
@@ -41,7 +41,7 @@
                                     
                                     <div class="form-floating mb-3">
                                        
-                                        <textarea name="user[info1]" placeholder="Nic" id="info1" class="form-control"><%= user.info1 %></textarea>
+                                        <textarea required name="user[info1]" placeholder="Nic" id="info1" class="form-control"><%= user.info1 %></textarea>
                                         <label for="info1" class="username">
                                             Opis (normalny po lewej)
                                             
@@ -50,7 +50,7 @@
                                     </div>
                                     <div class="form-floating mb-3">
                                        
-                                        <textarea name="user[info2]" placeholder="Nic" id="info2" class="form-control"><%= user.info2 %></textarea>
+                                        <textarea required name="user[info2]" placeholder="Nic" id="info2" class="form-control"><%= user.info2 %></textarea>
                                         <label for="info2" class="username">
                                             Opis (normalny po prawej)
                                             
@@ -59,7 +59,7 @@
                                     </div>
                                     <div class="form-floating mb-3">
                        
-                                        <input type="text" class="form-control" autocomplete="off" id="facebook" name="user[facebook]" value="<%= user.facebook %>" placeholder="Link do Facebooka">
+                                        <input required type="text" class="form-control" autocomplete="off" id="facebook" name="user[facebook]" value="<%= user.facebook %>" placeholder="Link do Facebooka">
                                         <label for="facebook" class="username">
                                             Link do Facebooka
                                             
@@ -68,7 +68,7 @@
                                     </div>
                                     <div class="form-floating mb-3">
                                        
-                                        <input type="text" class="form-control" autocomplete="off" id="instagram" name="user[instagram]" value="<%= user.instagram %>" placeholder="Link do Instagrama">
+                                        <input required type="text" class="form-control" autocomplete="off" id="instagram" name="user[instagram]" value="<%= user.instagram %>" placeholder="Link do Instagrama">
                                         <label for="instagram" class="username">
                                             Link do Instagrama
                                             
@@ -77,7 +77,7 @@
                                     </div>
                                     <div class="form-floating mb-3">
                        
-                                        <input type="text" class="form-control" autocomplete="off" name="user[location]" id="location" value="<%= user.location %>" placeholder="h" aria-label="Hasło" aria-describedby="basic-addon1">
+                                        <input required type="text" class="form-control" autocomplete="off" name="user[location]" id="location" value="<%= user.location %>" placeholder="h" aria-label="Hasło" aria-describedby="basic-addon1">
                                         <label for="location" class="username">
                                             Lokalizacja
                                             
@@ -86,7 +86,7 @@
                                     </div>
                                     <div class="form-floating mb-3">
                        
-                                        <input type="email" class="form-control" autocomplete="off" id="email" name="user[email]" value="<%= user.email %>" placeholder="Email">
+                                        <input required type="email" class="form-control" autocomplete="off" id="email" name="user[email]" value="<%= user.email %>" placeholder="Email">
                                         <label for="email" class="username">
                                             Email
                                             
@@ -96,14 +96,14 @@
                                     
                                     <div class="form-floating mb-3">
                        
-                                        <input type="tel" class="form-control" autocomplete="off" id="phone" name="user[phone]" value="<%= user.phone %>" pattern="[0-9]{3} [0-9]{3} [0-9]{3}" placeholder="Email">
+                                        <input required type="tel" class="form-control" autocomplete="off" id="phone" name="user[phone]" value="<%= user.phone %>" pattern="[0-9]{3} [0-9]{3} [0-9]{3}" placeholder="Email">
                                         <label for="phone" class="username">
                                             Telefon
                                             
                                         </label>
                                         
                                     </div>
-                                    <input type="submit" value="Edytuj o mnie" class="btn btn-danger button">
+                                    <input type="submit" value="Edytuj o mnie" class="btn btn-danger button" id="send">
                                    
                                 </form>
                             </div>
@@ -114,6 +114,12 @@
                 </div>
             </div>
         </div>
-    <script src="script.js"></script>    
+    <script src="script.js"></script>  
+    <script>
+        document.getElementById("form").addEventListener("submit", function(){
+			document.getElementById("send").setAttribute("disabled", "disabled");
+			document.getElementById("send").innerText = `Edytowanie...`;
+    	})
+    </script>   
     </body>
     </html>
