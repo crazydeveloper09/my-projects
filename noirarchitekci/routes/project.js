@@ -68,17 +68,42 @@ router.get("/:link", function(req, res){
 
 
 router.post("/",upload.single("profile"),function(req, res){
-    cloudinary.uploader.upload(req.file.path, function(result) {
+    if(typeof req.file !== 'undefined'){
+        cloudinary.uploader.upload(req.file.path, function(result) {
+            let newProject = new Project({
+                title: req.body.title,
+                important: req.body.important,
+                mainPhoto: result.secure_url,
+                status: req.body.status,
+                info1: req.body.info1,
+                subpageLink: req.body.title.toLowerCase().split(' ').join('-'),
+                info2: req.body.info2,
+                client: req.body.client,
+                year: req.body.year
+            });
+            Project.create(newProject, function(err, project){
+                if(err) {
+                    console.log(err)
+                } else {
+                    Category.findById(req.body.category, (err, category) => {
+                        category.projects.push(project._id);
+                        category.save();
+                        res.redirect("/projects/" + project.subpageLink);
+                    })
+                    
+                }
+            });
+        });
+    } else {
         let newProject = new Project({
             title: req.body.title,
             important: req.body.important,
-            mainPhoto: result.secure_url,
             status: req.body.status,
             info1: req.body.info1,
             subpageLink: req.body.title.toLowerCase().split(' ').join('-'),
             info2: req.body.info2,
             client: req.body.client,
-			year: req.body.year
+            year: req.body.year
         });
         Project.create(newProject, function(err, project){
             if(err) {
@@ -92,7 +117,8 @@ router.post("/",upload.single("profile"),function(req, res){
                 
             }
         });
-    });
+    }
+    
     
 });
 
@@ -109,20 +135,26 @@ router.get("/:id/new/picture", isLoggedIn, function(req, res){
 })
 
 router.post("/:id/new/picture",upload.single("picture"), function(req, res){
-    cloudinary.uploader.upload(req.file.path, function(result) {
-        Project.findById(req.params.id, function(err, project){
-            if(err) {
-                console.log(err)
-            } else {
-                Picture.create({link: result.secure_url, type: 'project'}, (err, createdPicture) => {
-                    project.gallery.push(createdPicture);
-                    project.save();
-                    res.redirect("/projects/" + project.subpageLink);
-                })
-                
-            }
+    if(typeof req.file !== 'undefined'){
+        cloudinary.uploader.upload(req.file.path, function(result) {
+            Project.findById(req.params.id, function(err, project){
+                if(err) {
+                    console.log(err)
+                } else {
+                    Picture.create({link: result.secure_url, type: 'project'}, (err, createdPicture) => {
+                        project.gallery.push(createdPicture);
+                        project.save();
+                        res.redirect("/projects/" + project.subpageLink);
+                    })
+                    
+                }
+            });
         });
-    });
+    } else {
+        req.flash("error", "Nie wybrano zdjęcia");
+        res.redirect("back")
+    }
+    
     
 });
 
@@ -150,20 +182,25 @@ router.get("/:id/edit/brick-picture", isLoggedIn, function(req, res){
 
 
 router.post("/:id/edit/brick-picture", upload.single("picture"), function(req, res){
-   
-    cloudinary.uploader.upload(req.file.path, function(result) {
+    if(typeof req.file !== 'undefined'){
+        cloudinary.uploader.upload(req.file.path, function(result) {
       
-        Project.findById(req.params.id, function(err, project){
-            if(err) {
-                console.log(err);
-            } else {
-                
-                project.brickPhoto = result.secure_url;
-                project.save();
-                res.redirect("/projects/" + project.subpageLink);
-            }
+            Project.findById(req.params.id, function(err, project){
+                if(err) {
+                    console.log(err);
+                } else {
+                    
+                    project.brickPhoto = result.secure_url;
+                    project.save();
+                    res.redirect("/projects/" + project.subpageLink);
+                }
+            });
         });
-    });
+    } else {
+        req.flash("error", "Nie wybrano zdjęcia");
+        res.redirect("back")
+    }
+    
     
 });
 
@@ -181,19 +218,24 @@ router.get("/:id/edit/picture", isLoggedIn, function(req, res){
 
 
 router.post("/:id/edit/picture", upload.single("picture"), function(req, res){
-   
-    cloudinary.uploader.upload(req.file.path, function(result) {
+    if(typeof req.file !== 'undefined'){
+        cloudinary.uploader.upload(req.file.path, function(result) {
       
-        Project.findById(req.params.id, function(err, project){
-            if(err) {
-                console.log(err);
-            } else {
-                project.mainPhoto = result.secure_url;
-                project.save();
-                res.redirect("/projects/" + project.subpageLink);
-            }
+            Project.findById(req.params.id, function(err, project){
+                if(err) {
+                    console.log(err);
+                } else {
+                    project.mainPhoto = result.secure_url;
+                    project.save();
+                    res.redirect("/projects/" + project.subpageLink);
+                }
+            });
         });
-    });
+    } else {
+        req.flash("error", "Nie wybrano zdjęcia");
+        res.redirect("back")
+    }
+    
     
 });
 

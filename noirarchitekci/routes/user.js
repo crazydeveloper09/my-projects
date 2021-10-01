@@ -58,19 +58,24 @@ router.get("/:id/edit/picture", isLoggedIn, function(req, res){
 
 
 router.post("/:id/edit/picture", upload.single("picture"), function(req, res){
-   
-    cloudinary.uploader.upload(req.file.path, function(result) {
+    if(typeof req.file !== 'undefined'){
+        cloudinary.uploader.upload(req.file.path, function(result) {
       
-        User.findById(req.params.id, function(err, users){
-            if(err) {
-                console.log(err);
-            } else {
-                users.photo = result.secure_url;
-                users.save();
-                res.redirect("/#about");
-            }
+            User.findById(req.params.id, function(err, users){
+                if(err) {
+                    console.log(err);
+                } else {
+                    users.photo = result.secure_url;
+                    users.save();
+                    res.redirect("/#about");
+                }
+            });
         });
-    });
+    } else {
+        req.flash("error", "Nie wybrano zdjęcia");
+        res.redirect("back")
+    }
+    
     
 });
 
