@@ -1,0 +1,51 @@
+<%- include("../partials/header") %>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="text-center">Wyniki wyszukiwania głosicieli w zborze <%= currentUser.username %> dla parametru <%= param %>: <%= preachers.length %></h1>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+                <div class="col-lg-12">
+                    <form action="/preachers/search" method="get">
+                            <div class="input-group mb-3">
+                                    <input type="search" class="form-control" name="search" value="<%= param %>" placeholder="Wyszukaj głosiciela" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                      <button class="btn btn-success" type="submit"><i class="fas fa-search"></i></button>
+                                    </div>
+                                  </div>
+                    </form>
+                </div>
+            </div>
+        <br>
+        <% if(preachers.length === 0){ %>
+            <div class="row justify-content-center">
+                    <div class="col-lg-8 col-md-12">
+                        <div class="alert alert-info text-center" role="alert">
+                            Nie znalizono głosicieli w zborze <%= currentUser.username %> dla parametru <%= param %>
+                        </div>
+                    </div>
+                </div>
+            
+        <% } else { %>
+            <div class="row">
+                <% for(let i=preachers.length-1; i>=0;i--){ %>
+                    <div class="col-lg-12">
+                                <span class="info float-left"><%= preachers[i].name %></span>
+                                <div class="d-inline float-right">
+                                    <a href="/preachers/<%= preachers[i]._id %>/edit" class="btn btn-primary">Edytuj</a>
+                                    <a href="/preachers/<%= preachers[i]._id %>/delete" class="btn btn-danger">Usuń</a>
+                                </div>
+                                
+                                <hr style="clear: both;">
+                            </div>
+                <% } %>
+               
+            </div>
+        <% } %>
+       
+    </div>
+
+<%- include("../partials/footer") %>

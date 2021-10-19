@@ -1,0 +1,158 @@
+<%- include("../partials/headera") %>
+
+<div class="col-lg-6 col-md-12" id="form" style="height:100%">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-12" style="margin-top: 4%">
+            <div id="form1">
+                <a href="/territories/available">
+                    <i class="fas fa-arrow-left"></i>
+                    Wróć do strony z wolnymi terenami
+                </a>
+                <h1 class="login">Edytuj teren nr <%= territory.number %> zboru <%= currentUser.username %></h1>
+                <% if(error.length > 0){ %>
+                    <div class="alert alert-danger" role="alert">
+                        <%= error %>
+                    </div>
+                <% } %>
+                <% if(success.length > 0){ %>
+                    <div class="alert alert-success" role="alert">
+                        <%= success %>
+                    </div>
+                <% } %>
+                    
+                        <form action="/territories/<%= territory._id %>?_method=PUT" method="post" id="form">
+                            
+                            
+                            <div class="form-floating mb-3">
+                       
+                                <input type="number" name="territory[number]" id="number" value="<%= territory.number %>" placeholder="Wpisz nr terenu" class="form-control">
+                                <label for="number" class="username">
+                                    Edytuj nr terenu
+                                    
+                                </label>
+                                
+                            </div>
+                           
+                            <div class="form-floating mb-3">
+                       
+                                <input type="text" name="territory[city]" id="city" value="<%= territory.city %>" placeholder="Miejscowość" class="form-control">
+                                <label for="city" class="username">
+                                    Edytuj miejscowość
+                                    
+                                </label>
+                                
+                            </div>
+                          
+                            <div class="form-floating mb-3">
+                       
+                                <input type="text" name="territory[street]" id="street" value="<%= territory.street %>" placeholder="Ulica" class="form-control">
+                                <label for="street" class="username">
+                                    Edytuj ulicę
+                                    
+                                </label>
+                                
+                            </div>
+                            
+                            
+                            <div class="form-floating mb-3">
+                       
+                                <input type="number" name="territory[beginNumber]" id="beginNumber" value="<%= territory.beginNumber %>" placeholder="Numer początkowy" class="form-control">
+                                <label for="beginNumber" class="username">
+                                    Edytuj numer początkowy
+                                    
+                                </label>
+                                
+                            </div>
+                            
+                          
+                            <div class="form-floating mb-3">
+                       
+                                <input type="number" name="territory[endNumber]" id="endNumber" value="<%= territory.endNumber %>" placeholder="Numer końcowy" class="form-control">
+                                <label for="endNumber" class="username">
+                                    Edytuj numer końcowy
+                                    
+                                </label>
+                                
+                            </div>
+                            
+                            <div class="form-floating mb-3">
+                       
+                                <input type="date" name="territory[lastWorked]" id="lastWorked" value="<%= new Date(territory.lastWorked).toLocaleDateString() %>" class="form-control">
+                                <label for="lastWorked" class="username">
+                                    Edytuj datę ostatnio pracowane
+                                    
+                                </label>
+                                
+                            </div>
+                            
+                            
+                            <div class="form-floating mb-3">
+                       
+                                <select name="territory[preacher]" id="preacher" class="form-select">
+                                    <% if(typeof territory.preacher !== 'undefined'){ %>
+                                        <option value="<%= territory.preacher._id %>" ><%= territory.preacher.name %></option>
+                                    <% } %>
+                                   
+                                    <option value="">Wolny teren</option>
+                                    
+                                    <% for(let i=0; i<preachers.length;i++){ %>
+                                        <option value="<%= preachers[i]._id %>"><%= preachers[i].name %></option>
+                                    <% } %>
+                                </select>
+                                <label for="description" class="username">
+                                    Edytuj lub wybierz głosiciela
+                                    
+                                </label>
+                                
+                            </div>
+                            
+                            <div class="form-floating mb-3">
+                       
+                                <input type="date" name="territory[taken]" id="taken" value="<%= territory.taken %>" class="form-control">
+                                <label for="taken" class="username">
+                                    Edytuj datę kiedy wzięty
+                                    
+                                </label>
+                                
+                            </div>
+                            
+                            <div class="form-floating mb-3">
+                       
+                                <input type="text" name="territory[forbidden]" id="forbidden" value="<%= territory.forbidden %>" placeholder="Numery do których nie zachodzić" class="form-control">
+                                <label for="forbidden" class="username">
+                                    Edytuj numery do których nie zachodzić
+                                    
+                                </label>
+                                
+                            </div>
+                           
+                          
+                            <div class="form-floating mb-3">
+                       
+                                <textarea name="territory[description]" id="description" placeholder="Opis terenu" class="form-control"><%= territory.description %> </textarea>
+                                <label for="description" class="username">
+                                    Edytuj opis terenu
+                                    
+                                </label>
+                                
+                            </div>
+                            <input type="submit" value="Edytuj teren" class="btn btn-success button btn-green" id="send">
+                        </form>
+                    </div>
+                            
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+      
+    <script src="/script.js"></script>
+    <script>
+        document.getElementById("form").addEventListener("submit", function(){
+			document.getElementById("send").setAttribute("disabled", "disabled");
+			document.getElementById("send").innerText = `Edytowanie...`;
+    	})
+    </script>    
+</body>
+</html>

@@ -1,0 +1,53 @@
+<%- include("../partials/headera") %>
+
+<div class="col-lg-6 col-md-12" id="form">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-12" style="margin-top: 25%">
+            <div id="form1">
+                <a href="/preachers">
+                    <i class="fas fa-arrow-left"></i>
+                    Wróć do strony ze spisem głosicieli
+                </a>
+                <h1 class="login">Dodaj głosiciela do zboru <%= currentUser.username %></h1>
+                <% if(error.length > 0){ %>
+                    <div class="alert alert-danger" role="alert">
+                        <%= error %>
+                    </div>
+                <% } %>
+                <% if(success.length > 0){ %>
+                    <div class="alert alert-success" role="alert">
+                        <%= success %>
+                    </div>
+                <% } %>
+                    
+                    <form action="/preachers" method="POST" id="form">
+                       
+                        <div class="form-floating mb-3">
+                       
+                            <input type="text" name="name" id="name" placeholder="Imię i nazwisko" class="form-control">
+                            <label for="name" class="username">
+                                Wpisz imię i nazwisko
+                                
+                            </label>
+                            
+                        </div>
+                        <input type="submit" value="Dodaj głosiciela" class="btn btn-success button btn-green" id="send">
+                    </form>
+                </div>
+                            
+            </div>
+            
+        </div>
+    </div>
+</div>
+</div>
+
+<script src="/script.js"></script>
+<script>
+    document.getElementById("form").addEventListener("submit", function(){
+        document.getElementById("send").setAttribute("disabled", "disabled");
+        document.getElementById("send").innerText = `Dodawanie...`;
+    })
+</script>    
+</body>
+</html>

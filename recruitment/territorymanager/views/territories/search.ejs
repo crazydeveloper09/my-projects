@@ -1,0 +1,216 @@
+<%- include("../partials/header") %>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                
+                <h1 class="text-center">Znalezione tereny zboru <%= currentUser.username %> dla parametru <%= param %>: <%= territories.length %></h1>
+                
+                
+            </div>
+        </div>
+        <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <details class="text-center">
+                        <summary class="btn btn-success">Wybierz kategorię wyszukiwania</summary>
+                        <br>
+                        <br>
+                        <a class="details-item" id="city">Miejscowość</a>
+                        <br>
+                        <a class="details-item" id="street">Ulica</a>      
+                        <br>
+                        <a class="details-item" id="number">Nr terenu</a>   
+                        <br>                         
+                        <a class="details-item" id="preacher">Głosiciel</a>
+                    </details>
+                    
+                        <div id="citySearch">
+                            <br>
+                                <form action="/territories/search" method="get">
+                                    <div class="input-group mb-3">
+                                        <input type="search" class="form-control" name="city" value="<%= param %>" placeholder="Wpisz nazwę miejscowości" aria-label="Wpisz nazwę miejscowości" aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-success" type="submit"><i class="fas fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                        </div>
+    
+                        <div id="streetSearch">
+                            <br>
+                                <form action="/territories/search" method="get">
+                                    <div class="input-group mb-3">
+                                        <input type="search" class="form-control" name="street" value="<%= param %>" placeholder="Wpisz nazwę ulicy" aria-label="Wpisz nazwę ulicy" aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-success" type="submit"><i class="fas fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                        </div>
+    
+                        <div id="numberSearch">
+                            <br>
+                                <form action="/territories/search" method="get">
+                                    <div class="input-group mb-3">
+                                        <input type="search" class="form-control" name="number" value="<%= param %>" placeholder="Wpisz nr terenu" aria-label="Wpisz nr terenu" aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-success" type="submit"><i class="fas fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                        </div>
+                        <div id="preacherSearch">
+                            <br>
+                                <form action="/territories/search" method="get">
+                                    <div class="input-group mb-3">
+                                        <select class="form-control" name="preacher" aria-describedby="basic-addon2" style="font-family: 'Nunito', sans-serif;
+                                       
+                                        color: #28a745">
+                                            <option value="" style="color: black;">Wybierz głosiciela (aktualnie wybrany - <%= param %>)</option>
+                                            <% for(let i=0; i<preachers.length;i++){ %>
+                                                <option value="<%= preachers[i]._id %>" style="color:black"><%= preachers[i].name %></option>
+                                            <% } %>
+                                        </select>
+                                        <div class="input-group-append">
+                                            <button class="btn btn-success" type="submit"><i class="fas fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                        </div>
+                   
+                    
+                </div>
+                
+            </div>
+            <br>
+        <% if(territories.length===0){ %>
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-12">
+                    <div class="alert alert-info text-center" role="alert">
+                        
+                        Nie znaleziono terenów w zborze <%= currentUser.username %> dla parametru <%= param %>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+           
+        <% } else { %>
+            <div class="row">
+                <% for(let i=territories.length-1;i>=0;i--){ %>
+                    
+                    <div class="col-lg-6 col-md-12">
+                            <div class="card">
+                                <div class="card-title text-center" id="name">
+                                    <br>
+                                    Karta terenu nr <%= territories[i].number %>
+                                </div>
+                                    <div class="card-body">
+                                       
+                                        <p class="info">Miejscowość: <strong><%= territories[i].city %></strong></p>
+                                        <p class="info">Ulica: 
+                                            <strong><%= territories[i].street %> 
+                                                <% if(typeof territories[i].beginNumber !== 'undefined'){ %>
+                                                    <%= territories[i].beginNumber %> 
+                                                    <% if(typeof territories[i].endNumber !== 'undefined'){ %>
+                                                        - <%= territories[i].endNumber %>
+                                                    <% } %>
+                                                <% } %>
+                                            </strong>
+                                        </p>
+                                        <% if(typeof territories[i].description !== 'undefined' && territories[i].description !== ''){ %>
+                                            <p class="info">Opis: <strong><%= territories[i].description %></strong></p>
+                                        <% } %>
+                                        
+                                        <% if(typeof territories[i].forbidden !== 'undefined' && territories[i].forbidden !== ''){ %>
+                                            <p class="info">Nie zachodzić: <strong><%= territories[i].forbidden %></strong></p>
+                                        <% } %>
+                                        <p class="info">Ostatnio opracowane: <strong><%= territories[i].lastWorked %></strong></p>
+                                        <% if(typeof territories[i].preacher !== 'undefined'){ %>
+                                            <p class="info">Głosiciel: <strong><%= territories[i].preacher.name %></strong></p>
+                                            <p class="info">Pobrany: <strong><%= territories[i].taken %></strong></p>
+                                            <p class="info"><strong><%= territories[i].preacher.name %> ma ten teren
+                                                <% if(Math.round(Math.abs(new Date() - new Date(territories[i].taken)) / 86400000) < 90){ %>
+                                                    <%= Math.round(Math.abs(new Date() - new Date(territories[i].taken)) / 86400000) %> dni
+                                                <% } else if(Math.round(Math.abs(new Date() - new Date(territories[i].taken)) / 86400000) < 120){ %>
+                                                    <span class="text-primary"><%= Math.round(Math.abs(new Date() - new Date(territories[i].taken)) / 86400000) %></span> dni
+                                                <% } else if(Math.round(Math.abs(new Date() - new Date(territories[i].taken)) / 86400000) >= 120){ %>
+                                                    <span class="text-danger"><%= Math.round(Math.abs(new Date() - new Date(territories[i].taken)) / 86400000) %></span> dni
+                                                    <br>
+                                                    <br>
+                                                    <span class="text-danger"><strong>Przypomnij <%= territories[i].preacher.name %> o oddaniu terenu</strong> </span>
+                                                <% } %>
+                                            </strong></p>
+                                        <% } else { %>
+                                            <p class="info"><strong>Teren oznaczony jako <span class="text-success">wolny</span></strong> </p>
+                                            <p class="info"><strong>Teren nie był opracowywany od 
+                                                    <% if(Math.round(Math.abs(new Date() - new Date(territories[i].lastWorked)) / 86400000) < 31){ %>
+                                                        <%= Math.round(Math.abs(new Date() - new Date(territories[i].lastWorked)) / 86400000) %> dni
+                                                    <% } else if(Math.round(Math.abs(new Date() - new Date(territories[i].lastWorked)) / 86400000) < 62){ %>
+                                                        <span class="text-primary"><%= Math.round(Math.abs(new Date() - new Date(territories[i].lastWorked)) / 86400000) %></span> dni
+                                                    <% } else if(Math.round(Math.abs(new Date() - new Date(territories[i].lastWorked)) / 86400000) < 93){ %>
+                                                        <span class="text-orange" style="color: #fd7e14;"><%= Math.round(Math.abs(new Date() - new Date(territories[i].lastWorked)) / 86400000) %></span> dni
+                                                    <% } else if(Math.round(Math.abs(new Date() - new Date(territories[i].lastWorked)) / 86400000) >= 124){ %>
+                                                        <span class="text-danger"><%= Math.round(Math.abs(new Date() - new Date(territories[i].lastWorked)) / 86400000) %></span> dni
+                                                    <% } %>
+                                            </strong></p>
+                                        <% } %>
+                                        <div class="d-inline">
+                                                <a href="/territories/<%= territories[i]._id %>/edit" class="btn btn-primary">Edytuj</a>
+                                                <a href="/territories/<%= territories[i]._id %>/delete" class="btn btn-danger">Usuń</a>
+                                            </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                       
+                                
+                            
+            
+                <% } %>
+            </div>
+        <% } %>
+    </div>      
+    <script>
+        let preacherButton = document.getElementById("preacher");
+        let cityButton = document.getElementById("city");
+        let streetButton = document.getElementById("street");
+        let numberButton = document.getElementById("number");
+        let preacherSearch = document.getElementById("preacherSearch");
+        let citySearch = document.getElementById("citySearch");
+        let streetSearch = document.getElementById("streetSearch");
+        let numberSearch = document.getElementById("numberSearch");
+
+        preacherSearch.style.display = "none";
+        citySearch.style.display = "none";
+        streetSearch.style.display = "none";
+        numberSearch.style.display = "none";
+        
+
+        cityButton.addEventListener("click", function(){
+            preacherSearch.style.display = "none";
+            citySearch.style.display = "block";
+            streetSearch.style.display = "none";
+            numberSearch.style.display = "none";
+        })
+        preacherButton.addEventListener("click", function(){
+            preacherSearch.style.display = "block";
+            citySearch.style.display = "none";
+            streetSearch.style.display = "none";
+            numberSearch.style.display = "none";
+        })
+        streetButton.addEventListener("click", function(){
+            preacherSearch.style.display = "none";
+            citySearch.style.display = "none";
+            streetSearch.style.display = "block";
+            numberSearch.style.display = "none";
+        })
+        numberButton.addEventListener("click", function(){
+            preacherSearch.style.display = "none";
+            citySearch.style.display = "none";
+            streetSearch.style.display = "none";
+            numberSearch.style.display = "block";
+        })
+    </script>
+
+<%- include("../partials/footer") %>
