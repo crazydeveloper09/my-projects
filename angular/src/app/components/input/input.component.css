@@ -1,0 +1,23 @@
+input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 13px 13px 13px 20px;
+    font-size: 18px;
+    height: 40px;
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+input:focus {
+    border: 3px solid rgb(8, 70, 88);
+    color: rgb(15, 118, 147)
+}
+
+.btn-mine {
+    background-color: rgb(8, 70, 88);
+    
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+

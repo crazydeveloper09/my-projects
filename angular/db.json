@@ -1,0 +1,12 @@
+{
+  "tasks": [
+    {
+      "title": "Angular task",
+      "id": 1
+    },
+    {
+      "title": "Node.js app",
+      "id": 2
+    }
+  ]
+}

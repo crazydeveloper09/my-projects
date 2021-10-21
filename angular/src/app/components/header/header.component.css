@@ -1,0 +1,14 @@
+.fa-plus {
+    color: white;
+    float: right;
+}
+
+h1 {
+    background-color: rgb(8, 70, 88);
+    padding: 10px 20px;
+    font-size: 25px;
+    color: white;
+    margin: 0;
+    font-weight: normal;
+    text-transform: uppercase;
+}
