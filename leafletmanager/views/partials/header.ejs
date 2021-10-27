@@ -1,0 +1,121 @@
+<head>
+    <title> <%= header %> </title>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W9LGF1QBYS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-W9LGF1QBYS');
+</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta charset="utf-8">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700&display=swap" rel="stylesheet">
+    <script src="/b2ec1cb26d.js"></script>
+    <link rel="stylesheet" href="/bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    
+    
+</head>
+    
+    <body>
+        
+        
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-red">
+        <div class="container">
+        <a href="/territories/available" class="navbar-brand"><i class="fas fa-map-marked-alt"></i> Leaflet Manager</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="border:none;">
+        <span class="navbar-toggler-icon" style="color:#FBFA04"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto text-center">
+            <% if(currentUser.type === "company"){ %>
+                <% if(typeof home !== 'undefined'){ %>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/territories/available">Home</a>
+                    </li>
+                <% } else { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/territories/available">Home</a>
+                    </li>
+                <% } %>
+               
+                <% if(typeof all !== 'undefined'){ %>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/territories">Tereny</a>
+                    </li>
+                <% } else { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/territories">Tereny</a>
+                    </li>
+                <% } %>
+               
+                <% if(typeof leaflet !== 'undefined'){ %>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/leaflets">Ulotki</a>
+                    </li>
+                <% } else { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/leaflets">Ulotki</a>
+                    </li>
+                <% } %>
+                
+              
+                
+                <% if(typeof pre !== 'undefined'){ %>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/employees">Pracownicy</a>
+                    </li>
+                <% } else { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/employees">Pracownicy</a>
+                    </li>
+                <% } %>
+               
+                <li class="nav-item">
+                    <a class="nav-link" href="/companies/logout">Wyloguj</a>
+                            
+                </li>
+            <% } else { %>
+                <% if(typeof dash !== 'undefined'){ %>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/employees/<%= currentUser._id %>/dashboard">Moje tereny</a>
+                                
+                    </li>
+                <% } else { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/employees/<%= currentUser._id %>/dashboard">Moje tereny</a>
+                                
+                    </li>
+                <% } %>
+                
+                <% if(typeof home !== 'undefined'){ %>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/territories/available">Wolne tereny</a>
+                    </li>
+                <% } else { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/territories/available">Wolne tereny</a>
+                    </li>
+                <% } %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/employees/logout">Wyloguj</a>
+                            
+                </li>
+            <% } %>
+           
+        </ul>
+       
+      </div>	
+        </div>	
+     
+        
+        
+    </nav>

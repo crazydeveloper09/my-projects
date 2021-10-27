@@ -1,0 +1,51 @@
+
+<%- include ("../partials/headera") %> 
+<div class="col-lg-6 col-md-12" id="formDiv">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-12" style="margin-top: 4%">
+            <div id="form1">
+                <a href="/leaflets">
+                    <i class="fas fa-arrow-left"></i>
+                    Wróć do strony z ulotkami
+                </a>
+                <h1 class="login">Edytuj plik ulotki firmy <%= leaflet.title %></h1>
+                <% if(error.length > 0){ %>
+                    <div class="alert alert-danger" role="alert">
+                        <%= error %>
+                    </div>
+                <% } %>
+                <% if(success.length > 0){ %>
+                    <div class="alert alert-success" role="alert">
+                        <%= success %>
+                    </div>
+                <% } %>
+                    
+                        <form action="/leaflets/<%= leaflet._id %>/edit/file" method="post" id="form" enctype="multipart/form-data">
+                    
+                            <label for="file" class="username">
+                                Plik ulotki (zdjęcie, pdf)
+                            </label>
+                            <br>
+                            <input type="file" name="file" required>
+                            <br>
+                            <br>
+                            <input type="submit" value="Edytuj plik" class="btn btn-success button btn-green" id="send">
+                        </form>
+                    </div>
+                            
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/script.js"></script>
+<script>
+    document.getElementById("form").addEventListener("submit", function(){
+        document.getElementById("send").setAttribute("disabled", "disabled");
+        document.getElementById("send").value = `Edytowanie...`;
+    })
+</script>    
+</body>
+</html>

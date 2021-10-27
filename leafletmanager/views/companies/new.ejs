@@ -1,0 +1,149 @@
+<%- include ("../partials/headera") %> 
+                <div class="col-lg-6 col-md-12" id="formDiv">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 col-md-12" style="margin-top: 10%">
+                            <div id="form1">
+                                <a href="/companies/login">
+                                    <i class="fas fa-arrow-left"></i>
+                                    Wróć do strony logowania
+                                </a>
+                                <h1 class="login"> Zarejestruj firmę w Leaflet Manager</h1>
+                                <% if(error.length > 0){ %>
+                                    <div class="alert alert-danger" role="alert">
+                                        <%= error %>
+                                    </div>
+                                <% } %>
+                                <% if(success.length > 0){ %>
+                                    <div class="alert alert-success" role="alert">
+                                        <%= success %>
+                                    </div>
+                                <% } %>
+                                <form action="/companies/register" method="post" id="form">
+                                    <% if(typeof company !== 'undefined'){ %>
+                                        <div class="form-floating mb-3">
+                       
+                                            <input required type="text" class="form-control" autocomplete="off" value="<%= company.rname %>" name="name" id="name" placeholder="h" aria-label="Hasło" aria-describedby="basic-addon1">
+                                            <label for="name" class="username">
+                                                Nazwa firmy
+                                                
+                                            </label>
+                                            
+                                        </div>
+                                        <div class="form-floating mb-3">
+                       
+                                            <input required type="text" class="form-control" autocomplete="off" value="<%= company.username %>" name="username" id="username" placeholder="h" aria-label="Hasło" aria-describedby="basic-addon1">
+                                            <label for="username" class="username">
+                                                Nazwa użytkownika
+                                                
+                                            </label>
+                                            
+                                        </div>
+                                        <div class="form-floating mb-3">
+                       
+                                            <input required type="email" class="form-control" autocomplete="off" name="email" id="email" value="<%= company.email %>" placeholder="h" aria-label="Hasło" aria-describedby="basic-addon1">
+                                            <label for="email" class="username">
+                                                Email firmy
+                                                
+                                            </label>
+                                            
+                                        </div>
+                                        
+                                        <div class="form-floating mb-3">
+                           
+                                            <input required type="password" class="form-control" autocomplete="off" value="<%= company.password %>" name="password" id="password" placeholder="1234" aria-label="Hasło" aria-describedby="basic-addon1">
+                                            <label for="password" class="username">
+                                                Kod dostępu
+                                                
+                                            </label>
+                                            
+                                        </div>
+                                        <div class="form-floating mb-3">
+                           
+                                            <input required type="password" class="form-control" autocomplete="off" value="<%= company.confirm %>" name="confirm" id="confirm" placeholder="1234" aria-label="Hasło" aria-describedby="basic-addon1">
+                                            <label for="confirm" class="username">
+                                                Powtórz kod dostępu
+                                                
+                                            </label>
+                                            
+                                        </div>
+                                    <% } else { %>
+                                        <div class="form-floating mb-3">
+                       
+                                            <input required type="text" class="form-control" autocomplete="off" name="name" id="name" placeholder="h" aria-label="Hasło" aria-describedby="basic-addon1">
+                                            <label for="name" class="username">
+                                                Nazwa firmy
+                                                
+                                            </label>
+                                            
+                                        </div>
+                                        <div class="form-floating mb-3">
+                       
+                                            <input required type="text" class="form-control" autocomplete="off" name="username" id="username" placeholder="h" aria-label="Hasło" aria-describedby="basic-addon1">
+                                            <label for="username" class="username">
+                                                Nazwa użytkownika
+                                                
+                                            </label>
+                                            
+                                        </div>
+                                        <div class="form-floating mb-3">
+                       
+                                            <input required type="email" class="form-control" autocomplete="off" name="email" id="email" placeholder="h" aria-label="Hasło" aria-describedby="basic-addon1">
+                                            <label for="email" class="username">
+                                                Email firmy
+                                                
+                                            </label>
+                                            
+                                        </div>
+                                        
+                                        <div class="form-floating mb-3">
+                           
+                                            <input required type="password" class="form-control" autocomplete="off" name="password" id="password" placeholder="1234" aria-label="Hasło" aria-describedby="basic-addon1">
+                                            <label for="password" class="username">
+                                                Kod dostępu
+                                                
+                                            </label>
+                                            
+                                        </div>
+                                        <div class="form-floating mb-3">
+                           
+                                            <input required type="password" class="form-control" autocomplete="off" name="confirm" id="confirm" placeholder="1234" aria-label="Hasło" aria-describedby="basic-addon1">
+                                            <label for="confirm" class="username">
+                                                Powtórz kod dostępu
+                                                
+                                            </label>
+                                            
+                                        </div>
+                                    <% } %>
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
+                                        <label class="form-check-label" for="exampleCheck1">
+                                            Przeczytałem i zapoznałem się z
+                                            <a href="/policy">polityką prywatności</a>
+                                           
+                                        </label>
+                                    </div>
+                                    <br>
+                                    <input type="submit" value="Zarejestruj firme" class="btn btn-success button btn-green" id="send">
+                                   
+                                </form>
+                                
+                                
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+		<script src="/script.js"></script>
+        <script>
+            document.getElementById("form").addEventListener("submit", function(){
+                document.getElementById("send").setAttribute("disabled", "disabled");
+                document.getElementById("send").value = `Rejestrowanie...`;
+            })
+        </script>    
+    </body>
+</html>
+

@@ -1,0 +1,51 @@
+<%- include("../partials/header") %>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="text-center">Wyniki wyszukiwania pracowników w firmie <%= currentUser.company.name %> dla parametru <%= param %>: <%= employees.length %></h1>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+                <div class="col-lg-12">
+                    <form action="/employees/search" method="get">
+                            <div class="input-group mb-3">
+                                    <input type="search" class="form-control" name="search" value="<%= param %>" placeholder="Wyszukaj głosiciela" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                      <button class="btn btn-success" type="submit"><i class="fas fa-search"></i></button>
+                                    </div>
+                                  </div>
+                    </form>
+                </div>
+            </div>
+        <br>
+        <% if(employees.length === 0){ %>
+            <div class="row justify-content-center">
+                    <div class="col-lg-8 col-md-12">
+                        <div class="alert alert-info text-center" role="alert">
+                            Nie znalizono pracowników w firmie <%= currentUser.company.name %> dla parametru <%= param %>
+                        </div>
+                    </div>
+                </div>
+            
+        <% } else { %>
+            <div class="row">
+                <% for(let i=employees.length-1; i>=0;i--){ %>
+                    <div class="col-lg-12">
+                                <span class="info float-left"><%= employees[i].name %></span>
+                                <div class="d-inline float-right" style="margin-bottom: 15px">
+                                    <a href="/employees/<%= employees[i]._id %>/edit" class="btn btn-success btn-green">Edytuj</a>
+                                    <a href="/employees/<%= employees[i]._id %>/delete/confirm" class="btn btn-danger btn-red">Usuń</a>
+                                </div>
+                                
+                                <hr style="clear: both; margin-top: 20px;">
+                            </div>
+                <% } %>
+               
+            </div>
+        <% } %>
+       
+    </div>
+
+<%- include("../partials/footer") %>

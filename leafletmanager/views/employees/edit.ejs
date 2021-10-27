@@ -1,0 +1,52 @@
+<%- include("../partials/headera") %>
+
+<div class="col-lg-6 col-md-12" id="formDiv">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-12" style="margin-top: 20%">
+            <div id="form1">
+                <a href="/employees">
+                    <i class="fas fa-arrow-left"></i>
+                    Wróć do strony ze spisem pracowników
+                </a>
+                <h1 class="login">Edytuj pracownika w firmie <%= currentUser.company.name %></h1>
+                <% if(error.length > 0){ %>
+                    <div class="alert alert-danger" role="alert">
+                        <%= error %>
+                    </div>
+                <% } %>
+                <% if(success.length > 0){ %>
+                    <div class="alert alert-success" role="alert">
+                        <%= success %>
+                    </div>
+                <% } %>
+                    <form action="/employees/<%= employee._id %>?_method=PUT" method="POST" id="form">
+                        
+                        <div class="form-floating mb-3">
+                       
+                            <input required type="text" name="employee[name]" value="<%= employee.name %>" placeholder="Imię i nazwisko" class="form-control">
+                            <label for="number" class="username">
+                                Edytuj imię i nazwisko
+                                
+                            </label>
+                            
+                        </div>
+                        <input type="submit" value="Edytuj głosiciela" class="btn btn-success button btn-green" id="send">
+                    </form>
+                </div>
+                            
+            </div>
+            
+        </div>
+    </div>
+</div>
+</div>
+
+<script src="/script.js"></script>
+<script>
+    document.getElementById("form").addEventListener("submit", function(){
+        document.getElementById("send").setAttribute("disabled", "disabled");
+        document.getElementById("send").value = `Edytowanie...`;
+    })
+</script>    
+</body>
+</html>

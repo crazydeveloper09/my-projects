@@ -1,0 +1,88 @@
+
+            <%- include("../partials/header") %>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h1 class="text-center">Przydzielone tereny</h1>
+                        <h4 class="text-center">
+                            Zalogowany jako <%= currentUser.username %>
+                        </h4>
+                       
+                    </div>
+                </div>
+                
+                <% if(territories.length===0){ %>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 col-md-12">
+                            <div class="alert alert-info text-center" role="alert">
+                                Nie masz na razie przydzielonych terenów
+                            </div>
+                        </div>
+                    </div>
+                   
+                <% } else { %>
+                    <div class="row">
+                        <% for(let i=territories.length-1;i>=0;i--){ %>
+                            
+                            <div class="col-lg-4 col-md-6 col-md-12" style="margin-top: 8px;">
+                                    <div class="card">
+                                        <div class="card-title text-center" id="name">
+                                            <br>
+                                            Karta terenu nr <%= territories[i].number %>
+                                        </div>
+                                            <div class="card-body">
+                                               
+                                                <p class="info"><strong>Miejscowość:</strong> <%= territories[i].city %></p>
+                                                <% if(typeof territories[i].street !== 'undefined' && territories[i].street !== ''){ %>
+                                                    <p class="info"><strong>Ulica:</strong>
+                                                        <%= territories[i].street %> 
+                                                             <% if(typeof territories[i].beginNumber !== 'undefined'){ %>
+                                                                 <%= territories[i].beginNumber %> 
+                                                                 <% if(typeof territories[i].endNumber !== 'undefined'){ %>
+                                                                     - <%= territories[i].endNumber %>
+                                                                 <% } %>
+                                                             <% } %>
+                                                         
+                                                     </p>
+                                                <% } %>
+                                                
+                                                <% if(typeof territories[i].description !== 'undefined' && territories[i].description !== ''){ %>
+                                                    <p class="info"><strong>Opis:</strong> <%= territories[i].description %></p>
+                                                <% } %>
+                                                <% if(typeof territories[i].leaflet !== 'undefined'){ %>
+                                                    <p class="info"><strong>Którą ulotkę:</strong> <%= territories[i].leaflet.title %></p></p>
+                                                <% } %>
+                                               
+                                              
+                                                   
+                                                    <p class="info"><strong>Pobrany:</strong> <%= territories[i].taken %></p>
+                                                    <p class="info"><strong> Masz ten teren już
+                                                        <% if(Math.round(Math.abs(new Date() - new Date(territories[i].taken)) / 86400000) < 90){ %>
+                                                            <%= Math.round(Math.abs(new Date() - new Date(territories[i].taken)) / 86400000) %> dni
+                                                        <% } else if(Math.round(Math.abs(new Date() - new Date(territories[i].taken)) / 86400000) < 120){ %>
+                                                            <span class="text-primary"><%= Math.round(Math.abs(new Date() - new Date(territories[i].taken)) / 86400000) %></span> dni
+                                                        <% } else if(Math.round(Math.abs(new Date() - new Date(territories[i].taken)) / 86400000) >= 120){ %>
+                                                            <span class="text-danger"><%= Math.round(Math.abs(new Date() - new Date(territories[i].taken)) / 86400000) %></span> dni
+                                                          
+                                                        <% } %>
+                                                    </strong></p>
+                                                
+                                                
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                               
+                                        
+                                    
+                    
+                        <% } %>
+                    </div>
+                <% } %>
+            </div>      
+            
+        
+        <%- include("../partials/footer") %>
+
+

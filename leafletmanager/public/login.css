@@ -1,0 +1,126 @@
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background: #025930;
+  font-family: 'Montserrat', sans-serif;
+}
+#info {
+  background: #025930;
+  height: 100vh;
+  
+  color: white;
+  
+}
+#formDiv {
+  background:#ece9e9;
+  height: 100vh;
+}
+
+a {
+  
+  font-size: 17px;
+  color:  #262624;
+}
+.form-check-label a {
+  color: #262624;
+}
+.form-control:focus,
+.form-select:focus {
+    border: 2px solid #025930;
+}
+.description {
+  
+  font-size: 20px;
+  margin-top: 10px;
+  color: #262624;
+  font-weight: 400;
+}
+
+ .title {
+  font-size: 35px;
+  color: #F2B705;
+  font-weight: 700;
+  
+}
+
+#formDiv .login {
+  
+  font-size: 45px;
+  font-weight: 700;
+  color:#025930;
+}
+
+#formDiv .username {
+  
+  font-size: 18px;
+  font-weight: 700;
+  color: #025930;
+}
+
+.button {
+  width: 100%;
+  margin-bottom: 15px;
+  
+  font-weight: 700;
+  
+}
+#name {
+    
+  color: #262624;
+  font-weight: 700;
+  font-size: 25px;
+}
+.btn-red {
+  background: #F22F1D;
+  border-color: #F22F1D;
+ }
+ 
+ .btn-green {
+     background: #025930;
+     border-color: #025930;
+     
+ }
+ 
+ .btn-golden {
+     background: #F2B705;
+     border-color: #F2B705;
+     
+ }
+ 
+ .btn-black {
+     background: #262624;
+     border-color: #262624;
+ }
+.card {
+  background: #F2B705;
+  margin-bottom: 30px;
+}
+
+.info {
+  
+  color: #262624;
+  font-weight: 400;
+  font-size: 19px;
+}
+@media (max-width: 992px) {
+  #info {
+      display: none;
+  }
+  #formDiv {
+      padding: 5%;
+  }
+  body {
+    margin: 0;
+    background: #dbd9d9;
+  }
+  .container-full {
+    margin: 0;
+  }
+}
+
+#description_r {
+  color: #c9c7c7;
+  font-size:18px;
+  
+}

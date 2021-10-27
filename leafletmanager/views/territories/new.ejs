@@ -1,0 +1,159 @@
+
+<%- include ("../partials/headera") %> 
+<div class="col-lg-6 col-md-12" id="formDiv" style="height:100%">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-12" style="margin-top: 4%">
+            <div id="form1">
+                <a href="/territories/available">
+                    <i class="fas fa-arrow-left"></i>
+                    Wróć do strony z wolnymi terenami
+                </a>
+                <h1 class="login">Dodaj teren dla firmy <%= currentUser.company.name %></h1>
+                <% if(error.length > 0){ %>
+                    <div class="alert alert-danger" role="alert">
+                        <%= error %>
+                    </div>
+                <% } %>
+                <% if(success.length > 0){ %>
+                    <div class="alert alert-success" role="alert">
+                        <%= success %>
+                    </div>
+                <% } %>
+                    
+                        <form action="/territories" method="post" id="form">
+                            
+                            <div class="form-floating mb-3">
+                       
+                                <input type="number" name="number" id="territoryNumber" autocomplete="off" placeholder="Wpisz nr terenu" class="form-control">
+                                <label for="territoryNumber" class="username">
+                                   Nr terenu
+                                    
+                                </label>
+                                
+                            </div>
+                            
+                           
+                            <div class="form-floating mb-3">
+                       
+                                <input type="text" name="city" id="city" autocomplete="off" placeholder="Miejscowość" class="form-control" required>
+                                <label for="city" class="username">
+                                    Miejscowość <span class="text-danger" style="font-size: 13px;">*wymagane</span>
+                                    
+                                </label>
+                                
+                            </div>
+                           
+                           
+                            <div class="form-floating mb-3">
+                       
+                                <input type="text" name="street" id="street" autocomplete="off" placeholder="Ulica" class="form-control">
+                                <label for="street" class="username">
+                                   Ulica
+                                    
+                                </label>
+                                
+                            </div>
+                            
+                           
+                            <div class="form-floating mb-3">
+                       
+                                <input type="number" name="beginNumber" id="beginNumber" autocomplete="off" placeholder="Numer początkowy" class="form-control">
+                                <label for="beginNumber" class="username">
+                                    Numer początkowy
+                                    
+                                </label>
+                                
+                            </div>
+                            <div class="form-floating mb-3">
+                       
+                                <input type="number" name="endNumber" id="endNumber" autocomplete="off" placeholder="Numer końcowy" class="form-control">
+                                <label for="endNumber" class="username">
+                                    Numer końcowy
+                                    
+                                </label>
+                                
+                            </div>
+                            
+                            
+                            
+                            <div class="form-floating mb-3">
+                       
+                                <select name="employee" id="employee" class="form-select">
+                                    <option value="">Wybierz pracownika</option>
+                                    <option value="">Wolny teren</option>
+
+                                    <% for(let i=0; i<employees.length;i++){ %>
+                                        <option value="<%= employees[i]._id %>"><%= employees[i].name %></option>
+                                    <% } %>
+                                </select>
+                                <label for="employee" class="username">
+                                    Wybierz pracownika
+                                    
+                                </label>
+                                
+                            </div>
+                            <div class="form-floating mb-3">
+                       
+                                <select name="leaflet" id="leaflet" class="form-select">
+                                    <option value="">Ulotki</option>
+                                    
+
+                                    <% for(let i=0; i<leaflets.length;i++){ %>
+                                        <option value="<%= leaflets[i]._id %>"><%= leaflets[i].title %></option>
+                                    <% } %>
+                                </select>
+                                <label for="leaflet" class="username">
+                                    Wybierz ulotkę
+                                    
+                                </label>
+                                
+                            </div>
+                            
+                            <div class="form-floating mb-3" id="takenDiv">
+                       
+                                <input type="date" name="taken" id="taken" class="form-control">
+                                <label for="taken" class="username">
+                                    Pobrany
+                                    
+                                </label>
+                                
+                            </div>
+                            <div class="form-floating mb-3" id="lastPdiv">
+                       
+                                <input type="date" name="lastP" id="lastP" class="form-control">
+                                <label for="lastP" class="username">
+                                   Ostatnio pracowane
+                                    
+                                </label>
+                                
+                            </div>
+                                                        
+                            <div class="form-floating mb-3">
+                       
+                                <textarea name="description" id="description" placeholder="Opis terenu" class="form-control"></textarea>
+                                <label for="description" class="username">
+                                    Opis terenu
+                                    
+                                </label>
+                                
+                            </div>
+                            <input type="submit" value="Dodaj teren" class="btn btn-success button btn-green" id="send">
+                        </form>
+                    </div>
+                            
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/script.js"></script>
+<script>
+    document.getElementById("form").addEventListener("submit", function(){
+        document.getElementById("send").setAttribute("disabled", "disabled");
+        document.getElementById("send").value = `Dodawanie...`;
+    })
+</script>    
+</body>
+</html>

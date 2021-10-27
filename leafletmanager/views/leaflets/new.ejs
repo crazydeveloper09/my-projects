@@ -1,0 +1,96 @@
+
+<%- include ("../partials/headera") %> 
+<div class="col-lg-6 col-md-12" id="formDiv">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-12" style="margin-top: 4%">
+            <div id="form1">
+                <a href="/leaflets">
+                    <i class="fas fa-arrow-left"></i>
+                    Wróć do strony z ulotkami
+                </a>
+                <h1 class="login">Dodaj ulotkę firmy <%= currentUser.company.name %></h1>
+                <% if(error.length > 0){ %>
+                    <div class="alert alert-danger" role="alert">
+                        <%= error %>
+                    </div>
+                <% } %>
+                <% if(success.length > 0){ %>
+                    <div class="alert alert-success" role="alert">
+                        <%= success %>
+                    </div>
+                <% } %>
+                    
+                        <form action="/leaflets" method="post" id="form" enctype="multipart/form-data">
+                            
+                            
+                            
+                           
+                            <div class="form-floating mb-3">
+                       
+                                <input type="text" required name="title" id="title" autocomplete="off" placeholder="Nazwa ulotki" class="form-control" required>
+                                <label for="title" class="username">
+                                   Nazwa ulotki
+                                    
+                                </label>
+                                
+                            </div>
+                           
+                           
+                            <div class="form-floating mb-3">
+                       
+                                <select name="type" required id="type" class="form-control">
+                                    <option value="0">Typy</option>
+                                   <option value="normal">Zwykła</option>
+                                   <option value="half">Składana na pół</option>
+                                   <option value="cetka">Na trzy w cetkę</option>
+                                   <option value="zetka">Na trzy w zetkę</option>
+                                   <option value="gazetka">Gazetka</option>
+
+                                  
+                                </select>
+                                <label for="type" class="username">
+                                    Wybierz typ
+                                    
+                                </label>
+                                
+                            </div>
+                            
+                            
+                            
+                                                        
+                            <div class="form-floating mb-3">
+                       
+                                <textarea name="description" id="description" required placeholder="Opis ulotki" class="form-control"></textarea>
+                                <label for="description" class="username">
+                                    Opis ulotki
+                                    
+                                </label>
+                                
+                            </div>
+                            <label for="file" class="username">
+                                Plik ulotki (zdjęcie, pdf)
+                            </label>
+                            <br>
+                            <input type="file" name="file" required>
+                            <br>
+                            <br>
+                            <input type="submit" value="Dodaj ulotkę" class="btn btn-success button btn-green" id="send">
+                        </form>
+                    </div>
+                            
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/script.js"></script>
+<script>
+    document.getElementById("form").addEventListener("submit", function(){
+        document.getElementById("send").setAttribute("disabled", "disabled");
+        document.getElementById("send").value = `Dodawanie...`;
+    })
+</script>    
+</body>
+</html>

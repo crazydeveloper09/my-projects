@@ -1,0 +1,155 @@
+
+
+body {
+    background: #F2F2F2;
+    font-family: 'Montserrat', sans-serif;
+}
+.bg-red {
+    background: #262624;
+}
+.nav-link {
+    
+    text-transform: uppercase;
+    font-weight: 400;
+}
+.card {
+    background: #F2B705;
+  }
+h1 {
+    
+    color: #025930;
+    font-size: 35px;
+    font-weight: 700;
+    margin-top: 70px;
+    margin-bottom: 20px;
+}
+#hello {
+    font-size: 50px;
+    margin-top: 30px;
+}
+.why {
+    color: #262624;
+    
+    font-size: 30px;
+    margin-bottom: 44px;
+}
+.why-header {
+    color: #262624;
+    
+    font-size: 25px;
+}
+.why-description {
+    color: #262624;
+    
+    font-size: 20px;
+}
+.border-red {
+    border-left: 4px solid #F22F1D;
+    margin-right: 6px;
+}
+.border-yellow {
+    border-left: 4px solid #F2B705;
+    margin-right: 6px;
+}
+.icon {
+    top:50%;
+    bottom: 50%;
+}
+.margin {
+    margin-bottom: 40px;
+}
+h4 {
+    
+    color: #025930;
+    font-size: 22px;
+    font-weight: 400;
+}
+
+#name {
+    
+    color: #262624;
+    font-weight: 700;
+    font-size: 25px;
+}
+footer {
+    background: #025930;
+    margin-top: 40px;
+    width: 100vw;
+    position: absole;
+    bottom: 0;
+}
+.info {
+    
+    color: #262624;
+    font-weight: 400;
+    font-size: 19px;
+}
+.footer_header {
+    color: #F2F2F2;
+    font-size: 25px;
+    margin-top: 15px;
+}
+.footer_description a {
+    color: #F2B705;
+    font-size: 19px;
+    display: block;
+}
+.language {
+    font-size: 13px;
+    color: #F2F2F2;
+}
+
+.login {
+    
+    color: #28a745;
+    font-size: 35px;
+}
+
+
+input[type=search] {
+    
+    
+    color: #025930;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #025930;
+}
+
+input[type=search]::placeholder {
+    
+    color: #025930;
+}
+
+.btn-red {
+ background: #F22F1D;
+ border-color: #F22F1D;
+}
+
+.btn-green {
+    background: #025930;
+    border-color: #025930;
+    margin-right: 6px;
+}
+
+.btn-yellow {
+    background: #F2B705;
+    border-color: #F2B705;
+    color: #025930;
+}
+
+.btn-black {
+    background: #262624;
+    border-color: #262624;
+}
+
+@media (max-width:992px){
+    .btn-green {
+        margin-bottom: 10px;
+    }
+    .icon {
+        margin-bottom: 20px;
+    }
+    
+}

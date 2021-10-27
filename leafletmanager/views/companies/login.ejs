@@ -1,0 +1,65 @@
+<%- include ("../partials/headera") %> 
+                <div class="col-lg-6 col-md-12" id="formDiv">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 col-md-12" style="margin-top: 20%">
+                            <div id="form1">
+                                <a href="/territories/available">
+                                    <i class="fas fa-arrow-left"></i>
+                                    Wróć do strony głównej
+                                </a>
+                                <h1 class="login">Zaloguj się do panelu jako firma</h1>
+                                <% if(error.length > 0){ %>
+                                    <div class="alert alert-danger" role="alert">
+                                        <%= error %>
+                                    </div>
+                                <% } %>
+                                <% if(success.length > 0){ %>
+                                    <div class="alert alert-success" role="alert">
+                                        <%= success %>
+                                    </div>
+                                <% } %>
+                                <form action="/companies/login" method="post" id="form">
+                                    <div class="form-floating mb-3">
+                       
+                                        <input required type="text" class="form-control" autocomplete="off" name="username" id="username" placeholder="h" aria-label="Hasło" aria-describedby="basic-addon1">
+                                        <label for="username" class="username">
+                                            Nazwa użytkownika
+                                            
+                                        </label>
+                                        
+                                    </div>
+                                    
+                                    
+                                    <div class="form-floating mb-3">
+                       
+                                        <input required type="password" class="form-control" autocomplete="off" name="password" id="password" placeholder="1234" aria-label="Hasło" aria-describedby="basic-addon1">
+                                        <label for="password" class="username">
+                                            Kod dostępu
+                                            
+                                        </label>
+                                        
+                                    </div>
+                                    <input type="submit" value="Zaloguj się" class="btn btn-success button btn-green" id="send">
+                                   
+                                </form>
+                                
+                                <a href="/companies/register" class="btn btn-warning button btn-golden">Załóż firmowe konto</a>
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+		<script src="/script.js"></script>
+        <script>
+            document.getElementById("form").addEventListener("submit", function(){
+                document.getElementById("send").setAttribute("disabled", "disabled");
+                document.getElementById("send").value = `Logowanie...`;
+            })
+        </script>    
+    </body>
+</html>
+
