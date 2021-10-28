@@ -49,7 +49,11 @@
                                             <p class="info"><strong>Opis:</strong> <%= territories[i].description %></p>
                                         <% } %>
                                         <% if(typeof territories[i].leaflet !== 'undefined'){ %>
-                                            <p class="info"><strong>Którą ulotkę:</strong> <%= territories[i].leaflet.title %></p></p>
+                                            <p class="info"><strong>Ulotka:</strong> 
+                                                <a href="<%= territories[i].leaflet.file %>">
+                                                    <%= territories[i].leaflet.title %>
+                                                </a>
+                                            </p>
                                         <% } %>
                                        
                                         <p class="info"><strong>Ostatnio pracowane:</strong> <%= territories[i].lastWorked %></p>
