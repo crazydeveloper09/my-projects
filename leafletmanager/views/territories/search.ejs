@@ -126,10 +126,14 @@
                                             <p class="info"><strong>Opis:</strong> <%= territories[i].description %></p>
                                         <% } %>
                                         <% if(typeof territories[i].leaflet !== 'undefined'){ %>
-                                            <p class="info"><strong>Którą ulotkę:</strong> <%= territories[i].leaflet.title %></p></p>
+                                            <p class="info"><strong>Ulotka:</strong> 
+                                                <a href="<%= territories[i].leaflet.file %>">
+                                                    <%= territories[i].leaflet.title %>
+                                                </a>
+                                            </p>
                                         <% } %>
                                        
-                                        <p class="info"><strong>Ostatnio pracowane:</strong> <%= territories[i].lastWorked %></p>
+                                       
                                         
                                         <% if(typeof territories[i].employee !== 'undefined' && typeof territories[i].employee !== 'null'){ %>
                                             <p class="info"><strong>Pracownik:</strong> <%= territories[i].employee.name %></p>
@@ -147,6 +151,7 @@
                                                 <% } %>
                                             </strong></p>
                                         <% } else { %>
+                                            <p class="info"><strong>Ostatnio pracowane:</strong> <%= territories[i].lastWorked %></p>
                                             <p class="info"><strong>Teren oznaczony jako <span class="text-success">wolny</span></strong> </p>
                                             <p class="info"><strong>Teren nie był opracowywany od 
                                                     <% if(Math.round(Math.abs(new Date() - new Date(territories[i].lastWorked)) / 86400000) < 31){ %>
