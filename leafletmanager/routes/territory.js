@@ -165,7 +165,7 @@ router.get("/:territory_id/share", isEmployeeLoggedIn, function(req, res){
                             const mg = mailgun({ apiKey: process.env.MAILGUN_API_KEY, domain: DOMAIN, host: "api.eu.mailgun.net" });
                             const data = {
                                 from: `Leaflet Manager <leafletmanager@websiteswithpassion.pl>`,
-                                to: user.email,
+                                to: company.email,
                                 subject: `Powiadomienie o zgłoszeniu się na teren`,
                                 html: `<html>
                                         <head>
